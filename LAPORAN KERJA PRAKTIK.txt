@@ -1,0 +1,1046 @@
+LAPORAN KERJA PRAKTIK
+SISTEM INFORMASI MANAJEMEN PENJUALAN DAN STOK BARANG PADA BENGKEL FINO MOTOR
+
+
+
+ 
+
+
+
+Disusun Sebagai Salah Satu Syarat
+Menyelesaikan Mata Kuliah
+Kerja Praktik
+
+
+NAMA: Muhammad Faiz Alqadri
+NIM: 220401068
+
+
+PROGRAM STUDI TEKNIK INFORMATIKA
+FAKULTAS ILMU KOMPUTER
+UNIVERSITAS MUHAMMADIYAH RIAU
+PEKANBARU
+2026
+LEMBAR PENGESAHAN KERJA PRAKTIK
+   LAPORAN KERJA PRAKTIK
+SISTEM INFORMASI MANAJEMEN PENJUALAN DAN STOK BARANG PADA BENGKEL FINO MOTOR
+
+OLEH:
+Nama: Muhammad Faiz Alqadri
+NIM: 220401068
+
+Pekanbaru,  13 Februari 2026
+Pembimbing
+
+
+
+
+
+
+
+Rahmad Firdaus, S.Kom., M.TI
+NIDN: 1024069002	Penguji I
+
+
+
+
+
+
+Hasanatul Fuadah Amran, M.Pd
+NIDN: 1019129301	Penguji II
+
+
+
+
+
+
+Sunanto, S.Kom., M.Kom
+NIDN: 1014048403
+		
+	Mengetahui,
+Ketua Program Studi Teknik Informatika
+
+
+
+
+
+Yulia Fatma, S.Kom., M.Cs
+NIDN: 1018079001	
+
+ 
+
+
+
+ 
+KATA PENGANTAR
+Puji dan syukur penulis panjatkan kepada Tuhan Yang Maha Esa karena atas berkat dan rahmat-Nya, sehingga laporan kerja praktik dengan tema “Sistem Informasi Manajemen Penjualan dan Stok Barang pada Bengkel Fino Motor” ini dapat diselesaikan dengan baik. Kerja praktik yang dilaksanakan dari November 2025 hingga Desember 2025 memberikan banyak pengalaman dan wawasan baru di dunia kerja. Penulis juga menyadari bahwa tersusunnya laporan ini tidak terlepas dari bantuan dan dukungan berbagai pihak. Oleh karena itu, penulis mengucapkan terima kasih yang sebesar-besarnya kepada:
+1.	Bapak Dr. Saidul Amin, MA selaku Rektor Universitas Muhammadiyah Riau.
+2.	Bapak Doni Winarso, S.Kom., M.Kom selaku Dekan Fakultas Ilmu Komputer Universitas Muhammadiyah.
+3.	Ibu Yulia Fatma, S.Kom., M.Cs selaku Ketua Program Studi Teknik Informatika Fakultas Ilmu Komputer Universitas Muhammadiyah
+4.	Bapak Rahmad Firdaus, S.Kom., M.TI selaku Dosen Pembimbing Kerja Praktik dan Dosen Pembimbing Akademik penulis. Terimakasih atas bimbingan, arahan, serta motivasi yang besar kepada penulis.
+5.	Bapak Zaki Fairuz Ghani selaku pengelola Bengkel Fino Motor yang telah memberikan kesempatan kepada saya untuk melaksanakan kerja praktik di wilayah kerjanya.
+Semoga laporan ini bermanfaat bagi pihak yang membutuhkan dan bagi kemajuan ilmu pengetahuan.
+Pekanbaru, 13 Februari 2026
+
+Muhammad Faiz Alqadri
+
+
+ABSTRAK
+Bengkel Fino Motor, yang bergerak di bidang jasa servis dan penjualan suku cadang, saat ini masih mengandalkan pencatatan manual menggunakan buku besar, yang menyebabkan berbagai kendala operasional seperti risiko kehilangan data fisik, ketidakakuratan perhitungan transaksi, serta kesulitan dalam pemantauan arus stok barang secara efektif. Penelitian ini bertujuan untuk merancang dan membangun Sistem Informasi Manajemen Penjualan dan Stok Barang berbasis web guna mendigitalisasi proses bisnis bengkel agar lebih efisien dan akurat. Metode pengembangan sistem yang diterapkan adalah System Development Life Cycle (SDLC) dengan model Waterfall, yang diimplementasikan menggunakan bahasa pemrograman PHP dengan framework Laravel serta manajemen basis data MySQL. Hasil dari penelitian ini adalah sebuah sistem informasi terintegrasi yang memiliki fitur utama Point of Sales (POS) untuk mempercepat transaksi kasir, manajemen inventaris dengan pembaruan stok otomatis dan notifikasi stok kritis, serta fitur laporan penjualan yang dapat diekspor ke format Excel. Berdasarkan hasil pengujian menggunakan metode Black Box Testing, sistem dinyatakan valid dan terbukti mampu mengatasi permasalahan pencatatan manual, meminimalisir kesalahan perhitungan (human error), serta memudahkan pemilik dalam memantau kinerja usaha secara real-time.
+Kata kunci: Information System, Stock Management, Point of Sales, Laravel, Waterfall, Fino Motor Workshop.
+
+
+ABSTRACT
+Fino Motor Workshop, which operates in the field of vehicle service and spare parts sales, currently relies on manual recording using ledgers, which causes various operational obstacles such as the risk of physical data loss, inaccuracy in transaction calculations, and difficulty in effectively monitoring stock flow. This research aims to design and build a Web-based Sales and Stock Management Information System to digitize the workshop's business processes, making them more efficient and accurate. The system development method applied is the System Development Life Cycle (SDLC) with the Waterfall model, implemented using the PHP programming language with the Laravel framework and MySQL database management. The result of this research is an integrated information system featuring Point of Sales (POS) to accelerate cashier transactions, inventory management with automatic stock updates and critical stock notifications, as well as sales reporting features that can be exported to Excel format. Based on test results using the Black Box Testing method, the system is declared valid and proven capable of overcoming manual recording issues, minimizing calculation errors (human error), and facilitating the owner in monitoring business performance in real-time.
+Keywords: Information System, Stock Management, Point of Sales, Laravel, Waterfall, Fino Motor Workshop.
+
+
+
+
+DAFTAR ISI
+LEMBAR PENGESAHAN KERJA PRAKTIK	ii
+KATA PENGANTAR	1
+ABSTRAK	2
+ABSTRACT	3
+DAFTAR ISI	4
+DAFTAR GAMBAR	6
+DAFTAR TABEL	8
+BAB 1	9
+PENDAHULUAN	9
+1.1	Latar Belakang	9
+1.2	Identifikasi Masalah	10
+1.3	Rumusan Masalah	11
+1.4	Batasan Masalah	11
+1.5	Tujuan Kerja Praktik	11
+1.6	Manfaat Kerja Praktik	12
+1.7	Sistematika Penulisan	12
+BAB 2	14
+LANDASAN TEORI	14
+2.1	Konsep Dasar Sistem Informasi	14
+2.1.1	Pengertian Sistem Informasi	14
+2.1.2	Pengertian Proses Bisnis	14
+2.1.3	Manajemen Persediaan dan Penjualan (POS)	15
+2.1.4	Sistem Informasi Penjualan	16
+2.2	Metode Pengembangan Sistem	16
+2.2.1	System Development Life Cycle (SDLC)	16
+2.2.2	Metode Waterfall	17
+2.3	Perancangan Basis Data dan Sistem (UML)	21
+2.3.1	Unified Modeling Language (UML)	21
+2.3.2	Entity Relationship Diagram (ERD)	22
+2.4	Kebutuhan Perangkat Lunak	23
+2.4.1	Framework Laravel	23
+2.4.2	PHP	24
+2.4.3	XAMPP	24
+2.4.4	MySQL	25
+2.4.5	Visual Studio Code	26
+2.4.6	Web Browser	26
+2.5	Kebutuhan Perangkat Keras	27
+BAB 3	28
+METODE PELAKSANAAN	28
+3.1	Tempat Kerja Praktik	28
+3.1.1	Profil Perusahaan	28
+3.1.2	Struktur Organisasi	28
+3.2	Jadwal Pelaksanaan	29
+3.3	Kerangka Kerja Praktik	30
+3.3.1	Langkah-langkah Penyelesaian Masalah	30
+3.3.2	Model Sistem yang berjalan saat ini	35
+3.3.1	Model Sistem yang diusulkan	36
+BAB 4	40
+HASIL DAN PEMBAHASAN	40
+4.1	Analisis Sistem	40
+4.1.1	Kebutuhan Fungsional	40
+4.1.2	Kebutuhan Non-Fungsional	42
+4.2	Perancangan Sistem	45
+4.2.1	Perancangan UML	45
+4.2.2	Perancangan Basis Data	59
+4.3	Hasil Implementasi Antarmuka	65
+4.3.1	Halaman Login	65
+4.3.2	Halaman Dashboard	66
+4.3.3	Halaman Manajemen Kategori	66
+4.3.4	Halaman Manajemen Data Barang	67
+4.3.5	Halaman Tambah Barang Baru	68
+4.3.6	Halaman Restock Barang (Barang Masuk)	69
+4.3.7	Halaman Transaksi Kasir (POS)	69
+4.3.8	Halaman Laporan	70
+4.3.6	Fitur Export Excel	71
+4.4	Pengujian Sistem	72
+4.4.1	Pengujian Halaman Login	72
+4.4.2	Pengujian Halaman Dashboard & Notifikasi	73
+4.4.3	Pengujian Manajemen Data Master (Kategori & Barang)	74
+4.4.4	Pengujian Fitur Restock (Barang Masuk)	74
+4.4.5	Pengujian Transaksi Kasir (POS)	74
+4.4.6	Pengujian Laporan & Export	75
+4.4.7	Pengujian Logout	75
+4.5	Analisis dan Pembahasan Hasil Pengujian	76
+BAB 5	78
+PENUTUP	78
+5. 1	Kesimpulan	78
+5. 2	Saran	79
+DAFTAR PUSTAKA	81
+LAMPIRAN	83
+Lampiran Penilaian Kerja Praktik Perusahaan	83
+Lampiran Surat Izin Magang	84
+
+
+
+
+
+
+DAFTAR GAMBAR
+Gambar 2. 1 Metode Waterfall	17
+Gambar 2. 2 Logo Laravel	23
+Gambar 2. 3 Logo PHP	24
+Gambar 2. 4 Logo XAMPP	25
+Gambar 2. 5 Logo MySQL	26
+Gambar 2. 6 Logo Visual Studio Code	26
+Gambar 2. 7 Web Browser	27
+Gambar 3. 1 struktur Organisasi Bengkel Fino Motor	29
+Gambar 3. 2 Model Sistem Saat Ini	36
+Gambar 3. 3 Model Sistem yang Diusulkan	37
+
+Gambar 3. 1 struktur Organisasi Bengkel Fino Motor	29
+Gambar 3. 2 Model Sistem Saat Ini	36
+Gambar 3. 3 Model Sistem yang Diusulkan	37
+Gambar 4. 1 Use Case Diagram Sistem Informasi Bengkel Fino Motor	45
+Gambar 4. 2 Activity Diagram Proses Login	46
+Gambar 4. 3 Activity Diagram Dashboard	47
+Gambar 4. 4 Activity Diagram Manajemen Barang	48
+Gambar 4. 5 Activity Diagram Manajemen Kategori	49
+Gambar 4. 6 Activity Diagram Transaksi Penjualan (POS)	50
+Gambar 4. 7 Activity Diagram Laporan	51
+Gambar 4. 8 Activity Diagram Logout	52
+Gambar 4. 9 Sequence Diagram Login	53
+Gambar 4. 10 Sequence Diagram Manajemen Barang (Tambah Barang)	54
+Gambar 4. 11 Sequence Diagram Transaksi Penjualan (POS)	55
+Gambar 4. 12 Class Diagram Sistem Informasi Bengkel Fino Motor	56
+Gambar 4. 13 Entity Relationship Diagram (ERD)	59
+Gambar 4. 14 Tampilan Halaman Login	64
+Gambar 4. 15 Tampilan Halaman Dashboard	65
+Gambar 4. 16 Tampilan Halaman Manajemen Kategori	66
+Gambar 4. 17 Tampilan Halaman Manajemen Barang	67
+Gambar 4. 18 Tampilan Formulir Tambah Barang	67
+Gambar 4. 19 Tampilan Halaman Restock Barang	68
+Gambar 4. 20 Tampilan Halaman Kasir (Point of Sales)	69
+Gambar 4. 21 Tampilan Halaman Laporan	70
+Gambar 4. 22 Tampilan Hasil Export Excel	71
+Gambar 4. 1 Use Case Diagram Sistem Informasi Bengkel Fino Motor	45
+Gambar 4. 2 Activity Diagram Proses Login	47
+Gambar 4. 3 Activity Diagram Dashboard	48
+Gambar 4. 4 Activity Diagram Manajemen Barang	49
+Gambar 4. 5 Activity Diagram Manajemen Kategori	50
+Gambar 4. 6 Activity Diagram Transaksi Penjualan (POS)	51
+Gambar 4. 7 Activity Diagram Laporan	52
+Gambar 4. 8 Activity Diagram Logout	53
+Gambar 4. 9 Sequence Diagram Login	54
+Gambar 4. 10 Sequence Diagram Manajemen Barang (Tambah Barang)	55
+Gambar 4. 11 Sequence Diagram Transaksi Penjualan (POS)	56
+Gambar 4. 12 Class Diagram Sistem Informasi Bengkel Fino Motor	57
+Gambar 4. 13 Entity Relationship Diagram (ERD)	60
+Gambar 4. 14 Tampilan Halaman Login	65
+Gambar 4. 15 Tampilan Halaman Dashboard	66
+Gambar 4. 16 Tampilan Halaman Manajemen Kategori	66
+Gambar 4. 17 Tampilan Halaman Manajemen Barang	67
+Gambar 4. 18 Tampilan Formulir Tambah Barang	68
+Gambar 4. 19 Tampilan Halaman Restock Barang	68
+Gambar 4. 20 Tampilan Halaman Kasir (Point of Sales)	69
+Gambar 4. 21 Tampilan Halaman Laporan	70
+Gambar 4. 22 Tampilan Hasil Export Excel	71
+ 
+
+
+
+
+
+
+
+
+
+DAFTAR TABEL
+Tabel 2. 1 Kebutuhan Perangkat Keras	26
+Tabel 3. 1 Timeline Kegiatan Kerja Praktik	28
+Tabel 4. 1 Tabel User	60
+Tabel 4. 2 Spesifikasi Tabel Kategori	61
+Tabel 4. 3 Spesifikasi Tabel Barang	61
+Tabel 4. 4 Spesifikasi Tabel Transaksi	62
+Tabel 4. 5 Spesifikasi Tabel Detail Transaksi	63
+Tabel 4. 6 Spesifikasi Tabel Riwayat Stok	63
+Tabel 4. 7 Pengujian Halaman Login	71
+Tabel 4. 8 Pengujian Dashboard	71
+Tabel 4. 9 Pengujian Manajemen Barang & Kategori	72
+Tabel 4. 10 Pengujian Restock Barang	72
+Tabel 4. 11 Pengujian Transaksi POS	73
+Tabel 4. 12 Pengujian Laporan	73
+Tabel 4. 13 Pengujian Logout	74
+
+
+
+
+	
+
+
+	 
+BAB 1	
+PENDAHULUAN
+ .1	Latar Belakang
+Perkembangan teknologi informasi yang pesat saat ini telah mendorong berbagai sektor industri, termasuk sektor jasa otomotif, untuk bertransformasi secara digital guna meningkatkan efisiensi dan efektivitas pelayanan. Dalam konteks manajemen bisnis modern, penerapan teknologi menjadi kunci utama untuk menggantikan proses konvensional yang rawan terhadap kesalahan. Transformasi ini penting karena pelanggan saat ini menuntut transparansi dan kecepatan layanan yang sulit dipenuhi oleh sistem manual. Namun, pada kenyataannya, banyak usaha yang masih menghadapi kendala dalam pengelolaan data operasional karena belum terintegrasi dengan sistem komputerisasi (Aqila et al., 2025). Ketergantungan pada cara lama ini seringkali memunculkan risiko kehilangan data dan duplikasi informasi yang dapat menghambat pertumbuhan usaha.
+Salah satu bidang usaha yang memunculkan risiko paling besar terhadap kehilangan data dan duplikasi informasi adalah dibidang otomotif khususnya pada Bengkel Fino Motor. Bengkel ini merupakan sebuah usaha yang bergerak di bidang jasa service kendaraan dan penjualan suku cadang (sparepart) seperti ban, oli, kampas rem, dan aksesoris motor lainnya. Meskipun memiliki intensitas transaksi harian yang cukup aktif, proses bisnis di bengkel ini masih dijalankan dengan metode konvensional. Berdasarkan hasil pengumpulan data, pencatatan data barang masuk dan barang keluar masih menggunakan buku besar. Setiap proses pencatatan barang masuk dan keluar yang masih dilakukan dengan buku besar ini dapat menyebabkan berbagai kendala fisik, seperti tulisan yang tidak terbaca, halaman yang robek, atau buku yang terselip, yang pada akhirnya berisiko mengakibatkan hilangnya data penting perusahaan secara permanen.
+Permasalahan yang muncul akibat metode tersebut sangat kompleks dan berdampak langsung pada kinerja operasional bengkel. Antara lain ketidakakuratan manajemen stok; admin kesulitan membedakan antara barang yang fast-moving (laku keras) dan slow-moving (jarang laku), sehingga sering terjadi kekosongan stok mendadak atau penumpukan barang yang tidak perlu. Selain itu, proses transaksi menjadi lambat karena perhitungan harga masih dilakukan dengan menggunakan kalkulator, yang membuat pelanggan harus menunggu lama. Hal ini sejalan dengan pendapat (Purba et al., n.d.) yang menyatakan bahwa proses pencatatan data barang yang masih dilakukan secara manual menyebabkan proses pencarian data dan pembuatan laporan membutuhkan waktu yang lama.
+Sebagai upaya untuk mengatasi berbagai kendala tersebut adalah dengan penerapan solusi berbasis teknologi informasi menjadi langkah yang paling relevan. Solusi ini menawarkan kemampuan pengolahan data secara otomatis dan real-time, sehingga memungkinkan pemilik usaha untuk memantau stok dan transaksi tanpa batasan waktu dan tempat. Dengan adanya sistem digital, risiko kesalahan manusia (human error) dalam perhitungan dan pencatatan dapat diminimalisir, serta keamanan data dapat lebih terjamin dibandingkan dengan penyimpanan fisik. Penerapan teknologi ini diharapkan mampu menciptakan alur kerja yang lebih terstruktur dan profesional bagi bengkel.
+Berdasarkan permasalahan yang sudah dijabarkan, urgensi kebutuhan akan sistem yang terintegrasi sangat dibutuhkan dan digitalisasi sistem operasional merupakan solusi terbaik bagi Bengkel Fino Motor. Oleh karena itu, penulis mengangkat judul kerja praktik ini adalah “SISTEM INFORMASI MANAJEMEN PENJUALAN DAN STOK BARANG PADA BENGKEL FINO MOTOR.”
+1.2	Identifikasi Masalah
+Berdasarkan latar belakang yang telah diuraikan, identifikasi masalah dalam kerja praktik ini adalah:
+1.	Pengelolaan stok barang masuk dan barang keluar masih dilakukan secara manual menggunakan buku besar
+2.	Pencatatan transaksi penjualan masih menggunakan sistem pembukuan konvensional
+3.	Data inventaris dan transaksi rentan terhadap risiko kehilangan fisik
+4.	Proses pencatatan manual rentan terhadap kesalahan perhitungan (human error)
+1.3	Rumusan Masalah
+Adapun rumusan masalah dalam kerja praktik ini adalah Bagaimana merancang dan membangun Sistem Informasi Manajemen Penjualan dan Stok Barang pada Bengkel Fino Motor berbasis web untuk mengatasi masalah pencatatan data yang masih menggunakan buku besar?
+ .4	Batasan Masalah
+Agar pembahasan lebih terarah dan sesuai dengan target pengembangan sistem, penulis menetapkan batasan masalah sebagai berikut:
+1.	Pengguna Sistem Sistem ini dirancang untuk digunakan oleh satu pengguna (Single Actor), yaitu Admin yang memiliki hak akses penuh untuk mengelola seluruh data dan fitur dalam aplikasi.
+2.	Lingkup Data dan Proses Sistem ini membatasi pengelolaan data pada ruang lingkup operasional bengkel, yang meliputi:
+ .	Manajemen data master barang (suku cadang).
+ .	Pencatatan data barang masuk untuk penambahan stok.
+ .	Pencatatan transaksi penjualan (barang keluar) dengan metode pembayaran tunai (cash).
+ .	Pembuatan laporan penjualan harian dan laporan stok barang.
+3.	Teknologi Pengembangan Sistem informasi ini dibangun berbasis web menggunakan bahasa pemrograman PHP dengan framework Laravel dan manajemen basis data menggunakan MySQL.
+4.	Objek Kerja Praktik Implementasi sistem dilakukan pada Bengkel Fino Motor yang beralamat di Jl. Melati Indah, Delima, Kec. Tampan, Kota Pekanbaru, Riau 28292.
+1.5	Tujuan Kerja Praktik
+Tujuan dari pelaksanaan kerja praktik dan perancangan sistem ini adalah untuk mengimplementasikan pengetahuan akademik secara nyata melalui pengembangan Sistem Informasi Manajemen Penjualan dan Stok Barang berbasis web yang terintegrasi di Bengkel Fino Motor. Sistem ini dirancang untuk menyelesaikan permasalahan pencatatan manual dan meningkatkan efisiensi operasional dengan menyediakan fitur manajemen stok otomatis guna meminimalkan risiko kehabisan (out of stock) maupun penumpukan barang (overstock), serta menghadirkan fitur Point of Sales (POS) sederhana yang mempercepat proses transaksi. Selain itu, transformasi ke sistem digital ini juga bertujuan untuk meningkatkan keamanan data dan mencegah risiko kehilangan rekam jejak transaksi yang sebelumnya rentan terjadi pada penggunaan buku catatan fisik.
+1.6	Manfaat Kerja Praktik
+Adapun manfaat yang diharapkan dari pelaksanaan Kerja Praktik dan pembangunan sistem ini adalah:
+1.	Mendapatkan pengalaman nyata dalam pengembangan sistem informasi manajemen bengkel berbasis web, mulai dari analisis kebutuhan operasional, perancangan basis data, hingga implementasi fitur Point of Sales (POS) dan stok barang yang terintegrasi dengan kebutuhan industri.
+2.	Memberikan solusi digital resmi untuk meningkatkan efisiensi pencatatan transaksi dan pengelolaan inventaris secara akurat dan transparan, sehingga mampu meminimalkan kesalahan manusia (human error) serta mempercepat pelayanan kepada pelanggan.
+1.7	Sistematika Penulisan
+Laporan Kerja Praktik ini disusun dalam lima bab utama beserta lampiran. Secara garis besar, masing-masing bab membahas hal-hal sebagai berikut:
+BAB 1 PENDAHULUAN 
+Bab ini menjelaskan mengenai latar belakang, identifikasi masalah, rumusan masalah, batasan masalah, tujuan dan manfaat kerja praktik, serta sistematika penulisan laporan.
+BAB 2 LANDASAN TEORI 
+Bab ini memaparkan gambaran umum instansi tempat kerja praktik, model pengelolaan usaha, serta landasan teori dan konsep sistem informasi yang diterapkan dalam pengembangan sistem.
+BAB 3 METODE PELAKSANAAN 
+Bab ini menguraikan waktu dan tempat pelaksanaan kerja praktik, jadwal kegiatan, metode pengumpulan data, serta tahapan perancangan sistem yang dilakukan.
+BAB 4 PEMBAHASAN 
+Bab ini membahas hasil dari kegiatan kerja praktik, mencakup implementasi sistem yang dibangun serta penerapan teori-teori yang relevan sebagai solusi atas permasalahan yang ada.
+BAB 5 PENUTUP 
+Bab ini berisi kesimpulan dari keseluruhan proses kerja praktik yang telah dilaksanakan serta saran-saran untuk pengembangan sistem di masa mendatang.
+
+
+BAB 2	
+LANDASAN TEORI
+2.1	Konsep Dasar Sistem Informasi
+2.1.1	Pengertian Sistem Informasi
+Sistem informasi merupakan kombinasi terorganisasi dari perangkat keras, perangkat lunak, infrastruktur komunikasi, serta sumber daya manusia yang bekerja sama untuk mengumpulkan, mengolah, menyimpan, dan menyebarkan informasi guna mendukung pengambilan keputusan, koordinasi, dan kendali dalam suatu organisasi (Safira Armah & Rayyan Firdaus, 2024). Sistem Informasi Manajemen (SIM) adalah serangkaian komponen yang saling terkait yang bertujuan untuk mengumpulkan, memproses, menyimpan, dan mendistribusikan informasi untuk mendukung pengambilan keputusan, koordinasi, dan pengendalian dalam suatu organisasi. SIM merupakan perpaduan antara sumber daya manusia, teknologi informasi, dan prosedur yang dirancang untuk menghasilkan informasi yang dapat digunakan oleh para manajer dalam mengelola organisasi secara efektif dan efisien (Safira Armah & Rayyan Firdaus, 2024).
+Menurut para ahli, sistem informasi bertujuan untuk mengubah data mentah menjadi informasi yang berguna. Dalam konteks dunia usaha, sistem informasi berperan vital dalam mengintegrasikan berbagai aktivitas operasional, mulai dari pencatatan transaksi hingga pelaporan manajerial, sehingga meminimalkan kesalahan yang sering terjadi pada proses manual. Di era digital saat ini, informasi telah menjadi aset yang sangat berharga bagi setiap organisasi. Informasi yang akurat, tepat waktu, dan relevan dapat membantu organisasi dalam mengambil keputusan yang lebih baik, meningkatkan efisiensi operasional, dan mencapai keunggulan kompetitif (Safira Armah & Rayyan Firdaus, 2024).
+2.1.2	Pengertian Proses Bisnis
+Proses bisnis adalah sekumpulan aktivitas atau pekerjaan terstruktur yang saling terkait untuk menyelesaikan suatu masalah tertentu atau menghasilkan produk maupun layanan demi meraih tujuan organisasi. Sebuah proses bisnis dapat dipecah menjadi beberapa sub-proses yang memiliki atribut, peran, dan aturannya sendiri.
+Pemahaman terhadap proses bisnis sangat penting dalam pengembangan sistem. Dalam studi kasus bengkel, proses bisnis mencakup alur pelanggan datang, pemilihan suku cadang, pengerjaan servis oleh mekanik, hingga penyelesaian pembayaran di kasir. Sistem yang baik harus mampu mendigitalkan alur ini tanpa menghilangkan fleksibilitas operasional yang ada. Berdasarkan penelitian yang dilakukan oleh (Susanto et al., 2023), pencatatan penjualan yang masih menggunakan cara manual yaitu dengan menuliskan produk yang terjual pada buku penjualan dapat menyebabkan berbagai kendala operasional seperti data yang tidak terkoordinasi dengan baik, pembuatan laporan yang lambat, dan keakuratan data yang tidak terjamin.
+2.1.3	Manajemen Persediaan dan Penjualan (POS)
+Manajemen persediaan (inventory management) adalah kegiatan perencanaan dan pengendalian barang dagang untuk memastikan ketersediaan barang saat dibutuhkan. Menurut (Munyaka & Yadavalli, 2022) sebagaimana dikutip dalam (Ramadhani et al., 2025), inventory adalah barang atau material yang dipegang oleh perusahaan untuk memenuhi kebutuhan produksi atau permintaan pelanggan, yang biasanya mencakup bahan baku, barang dalam proses, dan barang jadi. Pengelolaan stok yang buruk dapat menyebabkan kerugian berupa dead stock (barang tidak laku) atau out of stock (kehabisan barang saat dicari).
+Sementara itu, Point of Sales (POS) adalah sistem yang digunakan untuk melakukan transaksi penjualan ritel (Ramadhani et al., 2025). POS modern tidak hanya berfungsi sebagai mesin kasir, tetapi juga terintegrasi langsung dengan inventaris. Setiap kali transaksi terjadi, sistem POS akan secara otomatis mengurangi stok barang di database, memberikan data real-time kepada pemilik usaha. Sistem informasi penjualan merupakan bagian dari sistem informasi bisnis yang memiliki fungsi utama berupa pelaksanaan, pencatatan, perhitungan, dan pembuatan dokumen serta informasi mengenai penjualan suatu produk, mulai dari diterimanya order sampai terbitnya tagihan dagang (Susanto et al., 2023).
+2.1.4	Sistem Informasi Penjualan
+Sistem informasi penjualan adalah sub sistem informasi bisnis yang mencakup kumpulan prosedur yang melaksanakan, mencatat, mengkalkulasi, membuat dokumen dan informasi penjualan untuk keperluan manajemen dan bagian lain yang berkepentingan, mulai dari diterimanya order penjualan sampai mencatat timbulnya tagihan atau piutang dagang (Hendri et al., 2020). Komponen utama yang harus ada pada sistem informasi penjualan secara umum terdiri dari: mencatat penjualan produk, memeriksa stok produk, menghitung harga produk, mencetak nota penjualan produk, dan membuat dokumen atau informasi penjualan produk untuk keperluan manajemen pada level tinggi (Susanto et al., 2023).
+Menurut (Meha & Ratna Wati Simbolon, 2025), penjualan adalah aktivitas sebuah organisasi/perusahaan dalam menciptakan keuntungan yang memberi pengaruh penting dalam keberhasilan suatu organisasi/perusahaan tersebut. Sistem informasi penjualan mampu membuat laporan secara detail sehingga lebih mempermudah dalam meningkatkan omset penjualan. Pengembangan sistem informasi penjualan dengan bantuan teknologi dibutuhkan dalam kegiatan usaha agar data dapat diolah dengan cepat dan meminimalisir terjadinya kesalahan (Meha & Ratna Wati Simbolon, 2025).
+2.2	Metode Pengembangan Sistem
+2.2.1	System Development Life Cycle (SDLC)
+System Development Life Cycle (SDLC) atau Siklus Hidup Pengembangan Sistem adalah metodologi logis yang digunakan untuk membangun, memelihara, dan mengganti sistem informasi. SDLC menyediakan kerangka kerja yang terstruktur bagi pengembang sistem yang mencakup tahapan-tahapan mulai dari perencanaan, analisis, desain, implementasi, hingga pemeliharaan. Tujuannya adalah menghasilkan sistem berkualitas tinggi yang memenuhi harapan pelanggan, selesai tepat waktu, dan sesuai anggaran.
+2.2.2	Metode Waterfall
+Dalam pengembangan sistem ini, penulis menggunakan model Waterfall. Model ini merupakan metodologi pengembangan perangkat lunak yang terstruktur dan berurutan, dengan tahapan mulai dari analisis kebutuhan, desain, implementasi, hingga pengujian dan pemeliharaan (Nurhayati & Yanti Kemala Sari Siregar, 2023). Metode Waterfall adalah model pengembangan perangkat lunak klasik yang bersifat sekuensial atau berurutan. Seperti namanya, alur pengerjaan metode ini mengalir ke bawah seperti air terjun, melewati fase-fase yang telah ditentukan (Meha & Simbolon, 2025).
+Menurut (Hendri et al., 2020), sifat dari metode Waterfall ini sistematis dan berurutan dalam pembuatan sistem informasi yaitu mengikuti alur analisis, desain, kode, pengujian dan pemeliharaan. Kelebihan dari model Waterfall adalah mudah dipahami dan diterapkan pada proses pengembangan perangkat lunak. Setiap tahap akan mempengaruhi dan menjadi dasar dari keberlangsungan tahap pengembangan berikutnya, sama seperti air terjun yang mengalir dari atas ke bawah. Tahapan yang di atas (pertama) harus selesai terlebih dahulu sebelum berlanjut kepada tahap berikutnya (kedua), begitu juga kesalahan dari tahap pertama berpengaruh ke tahapan kedua dan seterusnya (Meha & Ratna Wati Simbolon, 2025).
+ 
+Gambar 2. 1 Metode Waterfall
+Berikut adalah penjelasan tahapan metode Waterfall yang digunakan dalam kerja praktik ini:
+1.	Analisis Kebutuhan (Requirement Analysis)
+Pada tahap ini dilakukan proses identifikasi, pengumpulan, dan pendefinisian kebutuhan sistem yang diperlukan pengguna. Tahap requirement analysis merupakan fase krusial dimana pengembang sistem melakukan komunikasi intensif dengan pengguna untuk memahami kebutuhan perangkat lunak dan batasan-batasan sistem yang akan dikembangkan. Pengumpulan kebutuhan sistem dapat dilakukan melalui berbagai teknik seperti wawancara dengan stakeholder, observasi langsung terhadap proses bisnis yang berjalan, serta studi literatur atau analisis sistem sejenis (Yoki Firmansyah, 2018). Pengumpulan data dilakukan melalui observasi langsung dan wawancara dengan pengelola bengkel. Hasil dari tahap ini berupa dokumen Software Requirements Specification (SRS)
+Kebutuhan sistem terbagi menjadi:
+a.	Kebutuhan Fungsional – menggambarkan fungsi-fungsi yang harus dimiliki sistem
+b.	Kebutuhan Non-Fungsional – aspek kualitas sistem seperti keamanan, performa, dan usability
+2.	Desain Sistem (System Design)
+Tahap ini mengubah kebutuhan yang telah diidentifikasi menjadi desain teknis sistem. Pada tahap desain, dilakukan penyusunan arsitektur sistem dan perancangan yang mencakup pemodelan sistem menggunakan Unified Modeling Language (UML) seperti Use Case Diagram, Activity Diagram, Sequence Diagram, dan Class Diagram untuk memperjelas hubungan antar komponen sistem, perancangan basis data, perancangan arsitektur sistem, perancangan antarmuka pengguna (user interface), serta perancangan skenario pengujian (Aurellia et al., 2025).
+Aktivitas desain mencakup:
+a.	Desain Basis Data – Meliputi pembuatan Entity Relationship Diagram (ERD) dan struktur tabel seperti users, barang, kategori, transaksi, dan detail_transaksi.
+b.	Desain UML – Disusun diagram Use Case untuk mendefinisikan kebutuhan fungsional pengguna, Activity Diagram untuk memodelkan alur proses bisnis, Sequence Diagram untuk menggambarkan interaksi antar objek berdasarkan urutan waktu, dan Class Diagram untuk merepresentasikan struktur kelas dalam sistem.
+c.	Desain Antarmuka (UI/UX) – Mendesain tampilan halaman seperti Dashboard, Kasir, Kelola Barang, dan Laporan dengan fokus pada kemudahan akses dan kejelasan informasi.
+3.	Implementasi (Implementation)
+Pada tahap ini, seluruh desain sistem diterjemahkan menjadi kode program yang dapat dieksekusi. Tahap implementasi atau pengkodean (coding) merupakan fase dimana pengembang mulai membangun sistem berdasarkan rancangan yang telah disetujui pada tahap sebelumnya, meliputi pembuatan komponen backend, frontend, serta pengembangan fitur-fitur utama sistem secara modular untuk memudahkan integrasi dan pengujian (Aurellia, 2025).
+Implementasi melibatkan penggunaan teknologi sebagai berikut:
+a.	Backend: Framework Laravel (PHP) dengan arsitektur Model-View-Controller (MVC) yang menyediakan struktur terorganisir dan mempercepat proses pengembangan.
+b.	Frontend: Blade Template Engine sebagai sistem templating bawaan Laravel, serta Tailwind CSS untuk styling antarmuka yang responsif dan modern.
+c.	Database: MySQL/MariaDB untuk manajemen basis data relasional dengan dukungan query yang optimal.
+d.	Fitur Keamanan dan Otomasi: Implementasi database trigger untuk pembaruan stok otomatis, middleware untuk proteksi route dan autentikasi, serta role-based access control (RBAC) untuk manajemen hak akses pengguna.
+Hasil dari tahap implementasi ini berupa aplikasi web yang telah terintegrasi penuh dan siap memasuki fase pengujian.
+4.	Integrasi dan Pengujian (Integration and Testing)
+Seluruh modul sistem digabungkan dan diuji menggunakan metode Black Box Testing. Tahap pengujian (testing) merupakan fase krusial dalam siklus pengembangan perangkat lunak yang bertujuan untuk memastikan bahwa sistem yang dikembangkan telah memenuhi spesifikasi kebutuhan pengguna dan berfungsi sesuai dengan yang diharapkan. Metode Black Box Testing dipilih karena mampu mengidentifikasi kesalahan fungsionalitas yang mungkin terlewatkan selama proses pengembangan sistem, dengan fokus pengujian pada masukan (input) dan keluaran (output) tanpa memperhatikan struktur internal kode program (Khatimah & Pondok Pesantren Miftahul Ulum Bettet Pamekasan, 2024). Pengujian dilakukan untuk memvalidasi setiap fungsi dan memastikan sistem berjalan sesuai spesifikasi yang telah ditetapkan.
+Contoh skenario pengujian yang dilakukan:
+a.	Menguji apakah stok barang berkurang secara otomatis saat transaksi penjualan berhasil disimpan.
+b.	Memastikan sistem menolak akses login jika username atau password yang dimasukkan tidak valid.
+c.	Memverifikasi bahwa data laporan penjualan sesuai dengan riwayat transaksi yang tersimpan di database.
+d.	Menguji validasi input pada formulir penambahan data barang untuk mencegah kesalahan penyimpanan data.
+5.	Pemeliharaan (Maintenance)
+Tahap pemeliharaan dilakukan ketika sistem sudah digunakan oleh Bengkel Fino Motor. Tahap terakhir dalam pengembangan aplikasi ini adalah maintenance atau pemeliharaan, yaitu tahap yang melakukan instalasi sistem yang dikembangkan secara langsung pada perangkat keras dan melakukan perbaikan atau pemeliharaan terhadap aplikasi apabila ditemukan masalah saat aplikasi dijalankan (Susanto et al., 2023). 
+Aktivitas meliputi:
+a.	Perbaikan bug
+b.	Pembaruan fitur sesuai kebutuhan pengguna
+c.	Optimasi performa
+d.	Backup data dan pengamanan sistem
+
+2.3	Perancangan Basis Data dan Sistem (UML)
+2.3.1	Unified Modeling Language (UML)
+Unified Modeling Language (UML) adalah bahasa standar yang digunakan untuk memvisualisasikan, merancang, dan mendokumentasikan sistem perangkat lunak berorientasi objek (Susanto et al., 2023). UML merupakan bahasa pemodelan yang digunakan untuk memodelkan rancangan pengembangan perangkat lunak berorientasi pada objek yang memiliki jenis-jenis pemodelan mewakili tahapan rancangan (Susanto et al., 2023).
+UML menyediakan berbagai jenis diagram untuk memodelkan sistem dari berbagai sudut pandang. Diagram yang digunakan dalam penelitian ini meliputi:
+1.	Use Case Diagram
+Menggambarkan fungsionalitas sistem dari sudut pandang pengguna (aktor). Diagram use case menjelaskan perilaku interaksi antara aktor sebagai pengguna dengan aplikasi yang dikembangkan (Susanto et al., 2023). Menurut (Meha & Ratna Wati Simbolon, 2025), diagram use case menggambarkan fungsionalitas sistem dari perspektif pengguna/user dan membantu dalam mengidentifikasi kebutuhan fungsional sistem serta memastikan bahwa sistem memenuhi kebutuhan pengguna. Diagram ini menunjukkan siapa saja yang berinteraksi dengan sistem dan apa yang dapat mereka lakukan.
+2.	Activity Diagram
+Menggambarkan alur kerja (workflow) atau aktivitas dari sebuah sistem atau proses bisnis. Activity diagram menggambarkan aliran kerja atau workflow layaknya sebuah alur proses bisnis, bukan memodelkan aktivitas aktor melainkan aktivitas aplikasi yang dikembangkan berdasarkan perilaku aktor (Susanto et al., 2023). Menurut (Meha & Ratna Wati Simbolon, 2025), activity diagram membantu dalam memahami alur kerja sistem, yaitu urutan langkah-langkah yang harus dilakukan oleh pengguna untuk mencapai tujuan tertentu.
+3.	Sequence Diagram
+Menggambarkan interaksi antar objek di dalam dan di sekitar sistem (termasuk pengguna, display, dan sebagainya) berupa message yang digambarkan terhadap waktu. Sequence diagram merupakan aliran kerja aplikasi secara teknis yang menggambarkan interaksi antar objek, entitas, maupun komponen, dimodelkan dengan garis vertikal serta pesan yang ditransaksikan dimodelkan dengan panah secara horizontal (Susanto et al., 2023).
+4.	Class Diagram
+Menggambarkan struktur sistem dari perspektif pendefinisian kelas-kelas yang akan diimplementasikan untuk membangun sistem. Class diagram memodelkan struktur sistem atau aplikasi yang dikembangkan meliputi kelas, atribut, metode, dan hubungan antar objek serta mampu menggambarkan keseluruhan rancangan pengembangan teknis pada aplikasi (Susanto et al., 2023).
+2.3.2	Entity Relationship Diagram (ERD)
+Entity Relationship Diagram (ERD) adalah model data konseptual yang merepresentasikan struktur logis dari basis data. ERD menggambarkan entitas (objek data) dan hubungan (relasi) yang ada di antara entitas-entitas tersebut. Komponen utama ERD meliputi Entitas (tabel), Atribut (kolom), dan Relasi (hubungan antar tabel). ERD sangat krusial untuk memastikan data tersimpan secara terstruktur dan ternormalisasi.
+
+2.4	Kebutuhan Perangkat Lunak
+Dalam pengembangan Sistem Informasi Manajemen Penjualan dan Stok Barang ini, digunakan berbagai perangkat lunak yang saling terintegrasi. Berikut adalah rincian teori pendukung mengenai perangkat lunak yang digunakan:
+2.4.1	Framework Laravel
+Laravel adalah kerangka kerja (framework) pengembangan aplikasi web berbasis bahasa PHP yang bersifat open source. Pengembangan web pada penelitian ini menggunakan framework Laravel yang merupakan framework berbasis PHP dan HTML yang digunakan untuk membangun aplikasi web melalui pendekatan metode MVC (Model View Controller) (Ramadhani et al., 2025).
+Laravel dikembangkan dengan konsep Model-View-Controller (MVC), yang memisahkan logika aplikasi (Controller), data (Model), dan tampilan antarmuka (View). Metode MVC (Model View Controller) memungkinkan pengembangan aplikasi berbasis web dapat dilakukan secara object oriented. Model berhubungan dengan database, View berhubungan dengan bagian antarmuka, dan Controller digunakan sebagai penjembatan atau penengah antara Model dan View (Susanto et al., 2023).
+Laravel dikenal dengan sintaksnya yang ekspresif dan elegan. Framework ini menyediakan berbagai fitur modern yang mempercepat proses pengembangan, seperti Eloquent ORM untuk interaksi database yang mudah, Blade Templating Engine untuk desain antarmuka yang dinamis, serta fitur keamanan bawaan untuk proteksi terhadap serangan web umum. Penggunaan Laravel menjamin struktur kode yang rapi dan skalabilitas sistem yang baik.
+ 
+Gambar 2. 2 Logo Laravel
+2.4.2	PHP
+PHP (Hypertext Preprocessor) adalah bahasa pemrograman script server-side yang dirancang khusus untuk pengembangan web. Hypertext preprocessor atau disingkat dengan PHP merupakan bahasa pemrograman yang digunakan untuk mengembangkan halaman website dimana bersifat server-side (Susanto et al., 2023). Kode PHP dieksekusi di server, dan hasilnya dikirimkan ke klien (browser) dalam format HTML.
+PHP memiliki kemampuan untuk mengolah data formulir, menghasilkan konten halaman dinamis, serta melakukan operasi Create, Read, Update, Delete (CRUD) ke dalam basis data. Dalam sistem ini, PHP berfungsi sebagai fondasi utama logika pemrograman yang berjalan di balik framework Laravel.
+ 
+Gambar 2. 3 Logo PHP
+2.4.3	XAMPP
+XAMPP merupakan perangkat lunak bebas (free software) yang mendukung banyak sistem operasi dan berfungsi sebagai server lokal (localhost). Nama XAMPP merupakan singkatan dari X (sistem operasi apapun), Apache, MySQL, PHP, dan Perl.
+XAMPP berfungsi sebagai server yang berdiri sendiri di komputer lokal. Dengan menggunakan XAMPP, pengembang dapat menjalankan dan menguji aplikasi web yang menggunakan Apache sebagai web server dan MySQL sebagai database server tanpa perlu terhubung ke internet.
+ 
+Gambar 2. 4 Logo XAMPP
+2.4.4	MySQL
+MySQL adalah sistem manajemen basis data relasional (RDBMS) yang paling populer digunakan dalam pengembangan aplikasi web. MySQL menggunakan bahasa SQL (Structured Query Language) untuk mengakses dan mengelola data. Database Management System atau disingkat dengan DBMS memiliki peran untuk mengelola database atau kumpulan data yang saling terhubung, yang dalam penggunaannya harus menggunakan bahasa yang spesifik ketika berkomunikasi dengan DBMS meliputi DDL dan DML (Susanto et al., 2023).
+DDL (Data Definition Language) adalah kumpulan perintah query yang digunakan untuk mendesain basis data dengan contoh perintah seperti Create, Rename, Alter, dan Drop. Sedangkan DML (Data Manipulation Language) adalah kumpulan perintah query yang digunakan untuk mengolah data dalam Tabel pada sebuah database dengan contoh perintah seperti Select, Insert, Update, Delete (Susanto et al., 2023).
+Database ini dipilih karena keandalannya (reliability), kemudahan penggunaan, dan performa yang cepat dalam menangani query data. Dalam sistem ini, MySQL bertugas menyimpan seluruh data vital seperti data pengguna, data stok barang, kategori, dan riwayat transaksi penjualan.
+ 
+Gambar 2. 5 Logo MySQL
+2.4.5	Visual Studio Code
+Visual Studio Code (VS Code) adalah editor kode sumber (source code editor) yang ringan namun sangat powerful, dikembangkan oleh Microsoft. VS Code mendukung berbagai bahasa pemrograman dan memiliki fitur IntelliSense yang memberikan pelengkapan kode cerdas berdasarkan tipe variabel, definisi fungsi, dan modul yang diimpor.
+Selain itu, VS Code memiliki terminal terintegrasi dan dukungan ekstensi yang luas, termasuk ekstensi untuk PHP dan Laravel, yang sangat membantu mempercepat proses penulisan kode (coding) dan pencarian kesalahan (debugging).
+ 
+Gambar 2. 6 Logo Visual Studio Code
+2.4.6	Web Browser
+Web browser seperti Google Chrome, Mozilla Firefox, atau Microsoft Edge digunakan sebagai perangkat lunak klien untuk mengakses, menampilkan, dan menguji antarmuka sistem yang sedang dikembangkan. Browser modern mendukung standar web terbaru seperti HTML5 dan CSS3, serta menyediakan Developer Tools yang berguna untuk memeriksa elemen halaman dan memantau performa aplikasi.
+ 
+Gambar 2. 7 Web Browser
+2.5	Kebutuhan Perangkat Keras
+Pengembangan sistem membutuhkan perangkat keras yang memadai untuk menjamin kelancaran proses coding, testing, dan operasional server lokal. Berikut adalah spesifikasi perangkat keras yang digunakan:
+Tabel 2. 1 Kebutuhan Perangkat Keras
+No	Jenis alat dan bahan	Jumlah	Satuan	Keterangan
+1	HP EliteBook 840	1	Unit	Perangkat utama laptop
+2	Processor 11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz   2.30 GHz	1	Unit	Bagian proses dan pengendalian kerja computer
+3	RAM 16GB	1	Unit	Memori penyimpanan sementara
+
+
+BAB 3	
+METODE PELAKSANAAN
+3.1	Tempat Kerja Praktik
+Kerja Praktik (KP) dilaksanakan di Bengkel Fino Motor dengan durasi pelaksanaan selama 2 (dua) bulan. Pemilihan lokasi ini didasarkan pada kebutuhan instansi akan digitalisasi sistem administrasi yang saat ini masih dijalankan secara manual dan konvensional.
+3.1.1	Profil Perusahaan
+Bengkel Fino Motor merupakan usaha mikro yang bergerak di bidang jasa perawatan dan perbaikan kendaraan bermotor roda dua serta penjualan suku cadang (sparepart). Bengkel ini dimiliki oleh Bapak Indra Yunefri dengan lokasi usaha di Jl. Melati Indah, Delima, Kec. Tampan, Kota Pekanbaru, Riau 28292.
+Dalam operasional bisnisnya, Bengkel Fino Motor berkomitmen untuk menyediakan layanan perawatan kendaraan bermotor yang responsif dan terpercaya, serta menjamin ketersediaan suku cadang yang komprehensif guna memenuhi kebutuhan masyarakat sekitar. Rata-rata aktivitas harian bengkel mencakup 10 hingga 20 transaksi, yang meliputi penggantian oli, servis ringan hingga berat, serta penjualan aksesori kendaraan bermotor.
+3.1.2	Struktur Organisasi
+Struktur organisasi di Bengkel Fino Motor tergolong sederhana, yang umumnya diterapkan pada usaha berskala mikro hingga menengah. Struktur organisasi ini dipimpin langsung oleh pemilik usaha yang juga merangkap sebagai pengawas operasional.
+ 
+Gambar 3. 1 struktur Organisasi Bengkel Fino Motor
+Berikut adalah deskripsi tugas dan wewenang masing-masing peran dalam struktur organisasi: Pemilik (Owner): 
+ .	Bapak Indra Yunefri. Bertanggung jawab penuh atas seluruh operasional bengkel, penyediaan modal usaha, pengambilan keputusan strategis, dan pengelolaan keuangan utama perusahaan.
+ .	Pengelola/Admin: Bapak Zaki Fairuz Ghani. Bertanggung jawab dalam manajemen operasional harian, pengadaan barang (purchasing), serta pengawasan dan koordinasi administrasi.
+ .	Mekanik dan Karyawan Operasional: Bertanggung jawab melaksanakan pelayanan perawatan dan perbaikan kendaraan kepada pelanggan serta melayani transaksi pembelian suku cadang secara langsung.
+3.2	Jadwal Pelaksanaan
+ Kegiatan Kerja Praktik ini dilaksanakan selama kurang lebih 2 (dua) bulan, terhitung mulai tanggal 1 November 2025 sampai dengan 31 Desember 2025. Jadwal kegiatan mencakup tahap observasi awal, wawancara dengan stakeholder, perancangan sistem, implementasi sistem, hingga penyusunan laporan akhir.
+Berikut adalah Timeline kegiatan Kerja Praktik:
+Tabel 3. 1 Timeline Kegiatan Kerja Praktik
+No	Deskripsi	Tahun 2025
+		November	Desember
+		I	II	III	IV	I	II	III	IV
+1	Observasi								
+2	Pengajuan								
+3	Perancangan System								
+4	Tahap Implementasi								
+5	Pembuatan Laporan								
+6	Seminar KP								
+7	Pengumpulan Dokumen Laporan								
+
+3.3	Kerangka Kerja Praktik
+3.3.1	Langkah-langkah Penyelesaian Masalah
+Untuk memastikan sistem yang dibangun tepat sasaran dan sesuai dengan kebutuhan instansi, penulis menerapkan langkah-langkah penyelesaian masalah yang sistematis dan terstruktur. Kerangka kerja ini mengikuti metodologi System Development Life Cycle (SDLC) dengan model Waterfall yang telah dijelaskan pada BAB 2.
+Berikut adalah tahapan lengkap yang dilakukan selama pelaksanaan kerja praktik:
+1.	Identifikasi Masalah
+Tahap awal dilakukan dengan mengamati dan menganalisis proses bisnis yang sedang berjalan di Bengkel Fino Motor. Kegiatan yang dilakukan meliputi:
+a.	Observasi Langsung: Penulis melakukan pengamatan terhadap aktivitas operasional bengkel selama 5 hari kerja (1-5 November 2025), dengan fokus pada:
+-	Proses pencatatan transaksi penjualan
+-	Mekanisme pengelolaan stok barang masuk dan keluar
+-	Cara pembuatan laporan keuangan
+-	Kendala yang dihadapi dalam sistem manual
+b.	Hasil Temuan: Berdasarkan hasil observasi, ditemukan bahwa seluruh pencatatan transaksi penjualan dan pengelolaan inventaris masih dilakukan secara manual menggunakan media buku tulis.
+Permasalahan yang teridentifikasi:
+a.	Ketidakakuratan Manajemen Stok: Pemilik kesulitan membedakan antara barang yang fast-moving (laku keras) dan slow-moving (jarang laku), sehingga sering terjadi kekosongan stok mendadak (out of stock) atau penumpukan barang yang tidak perlu (overstock).
+b.	Proses Transaksi yang Lambat: Perhitungan harga masih dilakukan manual menggunakan kalkulator, yang membuat pelanggan harus menunggu lama dan rentan terhadap kesalahan perhitungan (human error).
+c.	Kesulitan Pembuatan Laporan: Proses rekapitulasi penjualan harian membutuhkan waktu lama karena harus menghitung ulang dari nota-nota fisik yang berserakan.
+d.	Risiko Kehilangan Data: Data yang tercatat di buku besar rentan rusak, robek, atau hilang, yang dapat mengakibatkan hilangnya rekam jejak transaksi secara permanen.
+e.	Tidak Ada Sistem Peringatan Dini: Tidak ada mekanisme otomatis untuk memberi tahu ketika stok barang hampir habis, sehingga sering terlambat melakukan restock.
+2.	Analisis Masalah
+Setelah masalah teridentifikasi, penulis melakukan analisis mendalam menggunakan metode:
+a.	Wawancara Mendalam
+•	Narasumber: Bapak Zaki Fairuz Ghani (Pengelola/Admin Bengkel)
+•	Waktu: 6 November 2025
+•	Durasi: ±60 menit
+•	Topik yang Dibahas:
+-	Kendala sistem pencatatan manual
+-	Kebutuhan fitur sistem yang diharapkan
+-	Ekspektasi pemilik terhadap sistem baru
+-	Budget dan sumber daya yang tersedia
+Hasil Wawancara: (Transkrip lengkap terlampir pada Lampiran)
+"Kami sangat kesulitan dengan pencatatan manual ini. Kadang nota hilang, kadang salah hitung. Yang paling bermasalah adalah ketika stok barang habis tiba-tiba, padahal kita tidak sadar. Kami butuh sistem yang bisa memberi tahu otomatis kalau stok sudah mau habis, dan transaksi bisa lebih cepat."
+(Kutipan wawancara dengan Bapak Zaki Fairuz Ghani)
+b.	Studi Literatur
+Penulis melakukan kajian terhadap penelitian sejenis dan referensi akademis untuk mendapatkan best practice dalam pengembangan sistem informasi bengkel, yang meliputi:
+•	Jurnal ilmiah tentang sistem informasi penjualan dan stok barang
+•	Dokumentasi teknis Laravel Framework dan MySQL
+•	Penelitian terdahulu tentang implementasi Point of Sales (POS)
+•	Standar pengembangan sistem berbasis web
+Hasil Analisis:
+Akar permasalahan terletak pada ketiadaan sistem basis data terpusat yang terkomputerisasi, sehingga data menjadi redundan, tidak konsisten, dan rentan terhadap risiko kehilangan informasi. Sistem manual tidak mampu menyediakan informasi real-time yang dibutuhkan untuk pengambilan keputusan operasional.
+3.	Penyusunan Rencana Tindakan
+Berdasarkan hasil analisis permasalahan, rencana tindakan yang disusun adalah merancang dan mengembangkan Sistem Informasi Manajemen Bengkel Berbasis Web.
+a.	Digitalisasi Proses Transaksi melalui fitur Point of Sales (POS) untuk mempercepat proses kasir dan mengurangi kesalahan perhitungan.
+b.	Sistem Manajemen Inventaris Otomatis yang dapat :
+•	Mengurangi stok secara otomatis setiap transaksi terjadi
+•	Memberikan notifikasi peringatan (alert) ketika stok mencapai batas minimum
+•	Mencatat riwayat pergerakan stok (barang masuk dan keluar)
+c.	Fitur Pelaporan Real-time yang memungkinkan pemilik memantau kinerja penjualan kapan saja dengan kemampuan filter berdasarkan periode waktu dan ekspor ke format Excel.
+d.	Keamanan Data melalui penyimpanan terpusat di database dengan sistem backup berkala.
+Metode Pengembangan yang Dipilih:
+Sistem ini dikembangkan menggunakan SDLC dengan model Waterfall karena:
+a.	Kebutuhan sistem sudah jelas dan tidak berubah-ubah
+b.	Cocok untuk proyek dengan timeline yang ketat (2 bulan)
+c.	Tahapan berurutan memudahkan dokumentasi dan monitoring progres
+d.	Sesuai dengan skala proyek (single user, usaha mikro)
+4.	Implementasi Solusi
+Tahap ini merupakan fase eksekusi teknis, di mana perancangan antarmuka pengguna (UI/UX) dan struktur basis data diterjemahkan ke dalam kode program. Implementasi dilakukan dengan tahapan sebagai berikut:
+a.	Analisis Kebutuhan Sistem (Minggu 3-4 November):
+•	Mendefinisikan kebutuhan fungsional dan non-fungsional
+•	Menyusun dokumen Software Requirements Specification (SRS)
+•	Mengidentifikasi aktor sistem (Admin/Pemilik)
+b.	Perancangan Sistem (Minggu 4 November - Minggu 1 Desember) :
+•	Perancangan basis data menggunakan Entity Relationship Diagram (ERD)
+•	Perancangan UML (Use Case, Activity, Sequence, Class Diagram)
+•	Desain antarmuka pengguna (UI/UX mockup)
+•	Perancangan arsitektur sistem
+c.	Implementasi/Coding (Minggu 2 November - Minggu 2 Desember)
+Pengembangan sistem menggunakan:
+•	Backend: Framework Laravel (PHP)
+•	Database: MySQL/MariaDB
+•	Frontend: Blade Template Engine, Bootstrap 5, jQuery
+•	Development Environment: XAMPP, Visual Studio Code
+Fitur yang Diimplementasikan:
+•	Modul Autentikasi (Login/Logout)
+•	Dashboard dengan KPI Cards dan grafik
+•	Manajemen Kategori Barang
+•	Manajemen Data Master Barang
+•	Fitur Restock (Barang Masuk)
+•	Point of Sales (POS) dengan keranjang belanja
+•	Laporan Penjualan dengan filter tanggal
+•	Export laporan ke Excel
+•	Notifikasi stok kritis
+d.	Pengujian Sistem (Minggu 3 Desember) :
+•	Pengujian dilakukan menggunakan metode Black Box Testing
+•	Setiap fitur diuji untuk memastikan berfungsi sesuai spesifikasi
+•	Bug fixing dan perbaikan error yang ditemuka
+e.	Deployment dan Pelatihan Pengguna (Minggu 4 Desember) :
+•	Instalasi sistem pada komputer lokal bengkel
+•	Pelatihan penggunaan sistem kepada Admin (Bapak Zaki)
+•	Pendampingan penggunaan awal
+•	Penyerahan dokumentasi sistem
+5.	Evaluasi 
+Evaluasi sistem dilakukan menggunakan metode Black Box Testing untuk memastikan setiap fitur dan fungsi berjalan sesuai dengan spesifikasi yang telah ditentukan.
+3.3.2	Model Sistem yang berjalan saat ini
+Sistem operasional yang saat ini diterapkan di Bengkel Fino Motor masih bersifat konvensional dan manual. Alur proses bisnis dimulai ketika pelanggan datang untuk melakukan pembelian sparepart atau jasa servis. Mekanik kemudian melakukan pekerjaan perbaikan atau perawatan kendaraan sesuai permintaan. Setelah pekerjaan selesai, kasir mencatat rincian biaya transaksi secara manual pada nota kertas. Pada akhir jam operasional, kasir harus menyalin kembali seluruh data transaksi dari nota ke dalam buku besar untuk keperluan rekapitulasi harian. Proses ini dinilai kurang efisien karena memakan waktu dan memiliki risiko kesalahan pencatatan (human error) yang tinggi.
+Berikut adalah diagram alir (flowchart) yang menggambarkan sistem yang sedang berjalan:
+ 
+Gambar 3. 2 Model Sistem Saat Ini
+3.3.1	Model Sistem yang diusulkan
+Sistem yang diusulkan merupakan sebuah sistem informasi manajemen bengkel berbasis web yang terkomputerisasi. Sistem ini dirancang untuk mengintegrasikan seluruh proses transaksi penjualan dan pengelolaan inventaris dalam satu basis data terpusat. Dalam sistem usulan ini, proses transaksi di kasir dilakukan dengan memindai barcode atau memilih item barang melalui antarmuka sistem yang responsif. Sistem akan secara otomatis melakukan kalkulasi total harga, mengurangi jumlah stok barang di database secara real-time, dan memungkinkan pencetakan struk transaksi secara instan.
+ 
+Gambar 3. 3 Model Sistem yang Diusulkan
+3.3.2	Deskripsi Website yang diusulkan
+Sistem Informasi Manajemen Bengkel ini berfungsi sebagai platform digital terintegrasi untuk mendukung efisiensi operasional Bengkel Fino Motor. Sistem ini menyediakan solusi menyeluruh yang mencakup manajemen transaksi penjualan (Point of Sales), kontrol inventaris suku cadang, pelaporan keuangan otomatis, serta pemantauan kinerja bisnis secara real-time.
+3.3.3	Fitur-fitur Utama Website
+Berdasarkan analisis kebutuhan yang telah dilakukan, berikut adalah fitur-fitur utama yang diimplementasikan dalam sistem:
+ .	Dashboard Monitoring: Halaman pusat informasi yang menyajikan visualisasi data strategis, meliputi ringkasan omzet harian, grafik tren penjualan bulanan, serta notifikasi peringatan dini untuk stok barang yang telah mencapai batas minimum (kritis).
+ .	Point of Sales (POS): Antarmuka kasir yang dirancang intuitif untuk memproses transaksi penjualan barang dan jasa. Fitur ini dilengkapi dengan kalkulasi total otomatis, perhitungan uang kembalian, dan kemampuan cetak nota termal.
+ .	Manajemen Stok (Restock): Modul pengelolaan persediaan yang memungkinkan pencatatan barang masuk dari pemasok (supplier). Fitur ini secara otomatis memperbarui saldo stok di basis data dan menyimpan riwayat pengadaan untuk keperluan audit.
+ .	Manajemen Data Master: Fitur pengelolaan data referensi yang meliputi data barang, kategori produk, data pengguna, dan satuan unit, yang dapat dikelola (tambah, ubah, hapus) dengan mudah.
+ .	Laporan Otomatis: Fitur pelaporan yang mampu menghasilkan rekapitulasi penjualan harian maupun bulanan serta laporan stok opname. Sistem juga mendukung ekspor data ke format Excel (.xlsx) untuk kebutuhan analisis lanjutan atau arsip pembukuan.
+3.3.4	Teknologi yang Digunakan
+Pengembangan sistem ini didukung oleh teknologi perangkat lunak terkini, antara lain:
+ .	Backend Framework: Laravel (PHP) untuk logika aplikasi yang handal dan aman.
+ .	Database: MySQL (MariaDB) untuk penyimpanan data relasional.
+ .	Frontend: Blade Template Engine yang dipadukan dengan framework CSS (Tailwind/Bootstrap) untuk antarmuka yang responsif.
+ .	Development Tools: Visual Studio Code sebagai editor kode dan XAMPP sebagai server lokal.
+ .	Version Control: Git untuk manajemen versi kode sumber.
+
+
+BAB 4	
+HASIL DAN PEMBAHASAN
+4.1	Analisis Sistem
+Berdasarkan hasil pengumpulan data yang telah dilaksanakan melalui metode observasi dan wawancara sebagaimana telah diuraikan pada Bab 3, tahapan analisis sistem ini bertujuan untuk mendefinisikan spesifikasi kebutuhan yang diperlukan oleh Bengkel Fino Motor. Analisis ini menjadi pondasi dalam perancangan sistem informasi agar solusi yang dikembangkan dapat mengoptimalkan proses pencatatan manual dan pengelolaan inventaris yang selama ini mengalami kendala operasional.
+4.1.1	Kebutuhan Fungsional 
+Kebutuhan fungsional merupakan deskripsi mengenai berbagai fungsi atau fitur yang harus tersedia dalam sistem agar dapat beroperasi secara optimal dan memenuhi tujuan yang telah ditetapkan. Kebutuhan fungsional ini berfokus pada kapabilitas sistem dan mekanisme interaksi antara pengguna (admin) dengan sistem tersebut.
+Kebutuhan fungsional mengacu pada fitur-fitur yang disediakan oleh sistem untuk mendukung aktivitas operasional pengguna. Dalam Sistem Informasi Bengkel Fino Motor, terdapat satu aktor utama yaitu Admin (Pemilik) yang memiliki hak akses penuh untuk mengelola seluruh operasional bengkel. 
+Berikut ini adalah rincian kebutuhan fungsional pengguna yang telah diidentifikasi:
+1.	Kebutuhan Pengguna (Admin)
+Pengguna memiliki akses penuh untuk mengelola data bengkel. Dalam sistem informasi Bengkel Fino Motor ini, admin bertanggung jawab atas pengaturan data barang, stok, kategori, transaksi penjualan, serta laporan keuangan.
+a.	Login ke dalam sistem
+Sistem harus memungkinkan admin untuk masuk menggunakan username dan password untuk mengakses dashboard dan berbagai fitur lainnya
+b.	Dashboard Pemantauan
+Sistem menampilkan halaman dashboard yang berisi ringkasan informasi penting seperti total penjualan hari ini, stok barang yang menipis (kritis), dan grafik pendapatan bulanan.
+c.	Mengelola Data Barang
+Admin harus dapat mengelola data suku cadang (barang) dan jasa servis, termasuk menambah barang baru, mengedit harga, atau menghapus data barang yang sudah tidak dijual.
+d.	Mengelola Kategori Barang
+Admin harus dapat mengelola kategori barang untuk mengelompokkan jenis suku cadang (misalnya: Oli, Ban, Busi, Kampas Rem) agar mudah dicari.
+e.	Manajemen Jumlah Stok Barang (Restock)
+Sistem harus memungkinkan admin untuk memonitor dan memperbarui stok barang yang tersedia (mencatat barang masuk), serta memberikan peringatan jika stok mencapai batas minimum.
+f.	Transaksi Penjualan (POS)
+Sistem harus mendukung admin untuk memproses transaksi penjualan suku cadang maupun jasa servis. Fitur ini mencakup perhitungan total harga otomatis dan pencetakan nota (struk) pembayaran.
+g.	Laporan
+Sistem harus mendukung admin untuk melihat dan mencetak laporan transaksi, laporan stok, dan laporan pendapatan dalam berbagai format (seperti export ke Excel).
+h.	Logout dari sistem
+Sistem menyediakan fitur bagi admin untuk keluar dari aplikasi guna menjaga keamanan data.
+4.1.2	Kebutuhan Non-Fungsional
+Kebutuhan non-fungsional adalah spesifikasi yang mendefinisikan karakteristik kualitas sistem, seperti performa, keamanan, keandalan, dan kemudahan penggunaan. Kebutuhan ini tidak berkaitan langsung dengan fungsi spesifik yang dilakukan sistem, namun menentukan seberapa baik sistem beroperasi dalam kondisi tertentu. Berikut adalah rincian kebutuhan non-fungsional untuk Sistem Informasi Bengkel Fino Motor:
+1.	Performa (Performance)
+Kebutuhan non-fungsional adalah spesifikasi yang mendefinisikan karakteristik kualitas sistem, seperti performa, keamanan, keandalan, dan kemudahan penggunaan. Kebutuhan ini tidak berkaitan langsung dengan fungsi spesifik yang dilakukan sistem, namun menentukan seberapa baik sistem beroperasi dalam kondisi tertentu. 
+Berikut adalah rincian kebutuhan non-fungsional untuk Sistem Informasi Bengkel Fino Motor:
+a.	Responsivitas Antarmuka: Waktu pemuatan halaman utama (Dashboard, POS, Laporan) harus cepat dan responsif agar tidak menghambat alur kerja admin, terutama saat melayani pelanggan.
+b.	Proses Transaksi: Sistem harus mampu memproses penambahan barang ke keranjang belanja dan penyelesaian transaksi secara instan tanpa jeda yang mengganggu (lag) untuk memastikan pelayanan pelanggan yang efisien.
+c.	Efisiensi Query: Pencarian data barang pada halaman POS harus menampilkan hasil secara langsung saat kata kunci diketikkan, meskipun jumlah data barang bertambah seiring waktu.
+d.	Kapasitas Beban: Sistem dirancang untuk mampu menangani volume transaksi harian bengkel secara stabil tanpa penurunan performa yang signifikan pada jam sibuk
+2.	Keamanan (Security)
+Mengingat sistem ini mengelola data transaksi keuangan dan inventaris bengkel, aspek keamanan menjadi prioritas utama. Berikut adalah implementasi keamanan yang diterapkan:
+a.	Autentikasi Aman: Password pengguna wajib dienkripsi menggunakan algoritma hashing yang kuat (Bcrypt) sehingga tidak tersimpan dalam bentuk teks biasa (plaintext) di database.
+b.	Kontrol Akses: Penerapan middleware untuk membatasi akses halaman sesuai dengan peran pengguna (Admin) dan mencegah akses tanpa login (unauthorized access).
+c.	Proteksi Serangan: Sistem dilengkapi perlindungan standar terhadap serangan web umum seperti Cross-Site Request Forgery (CSRF) dan SQL Injection melalui mekanisme bawaan framework.
+d.	Manajemen Sesi: Sesi pengguna akan berakhir otomatis (timeout) setelah periode ketidakaktifan tertentu untuk mencegah penyalahgunaan akses jika perangkat ditinggalkan.
+3.	Keandalan (Reliability)
+a.	Ketersediaan Data: Sistem harus menjamin ketersediaan data stok dan transaksi yang akurat setiap saat dibutuhkan oleh pengguna.
+b.	Integritas Transaksi: Penerapan mekanisme database transaction untuk memastikan konsistensi data. Jika terjadi kegagalan saat proses penyimpanan transaksi, sistem akan membatalkan seluruh proses terkait (rollback) agar tidak terjadi selisih stok atau data yang korup.
+c.	Penanganan Kesalahan: Sistem harus mampu menangani kesalahan (error handling) dengan baik, menampilkan pesan yang informatif kepada pengguna tanpa mengekspos detail teknis sistem yang sensitif.
+4.	Kemudahan Penggunaan (Usability)
+Sistem dirancang dengan mempertimbangkan prinsip user-friendly agar dapat dioperasikan dengan mudah oleh pengguna dengan berbagai tingkat kemampuan teknis:
+a.	Antarmuka Intuitif: Desain tata letak menu dan navigasi yang konsisten serta penggunaan ikon yang familiar untuk memudahkan pengguna mengenali fungsi setiap fitur.
+b.	Efisiensi Alur Kerja: Fitur-fitur vital seperti POS dirancang dengan alur yang ringkas (sedikit klik) untuk mempercepat proses pelayanan.
+c.	Umpan Balik Visual: Sistem memberikan notifikasi visual yang jelas (sukses/gagal) setelah pengguna melakukan aksi, seperti saat menyimpan data atau menghapus barang.
+d.	Keterbacaan: Penggunaan ukuran huruf dan kontras warna yang nyaman di mata untuk penggunaan jangka panjang.
+5.	Kompatibilitas (Compatibility)
+a.	Dukungan Peramban: Sistem dapat berjalan optimal pada berbagai peramban web modern (Google Chrome, Mozilla Firefox, Microsoft Edge) yang umum digunakan.
+b.	Fleksibilitas Perangkat: Antarmuka sistem bersifat responsif (responsive design), sehingga tampilan dapat menyesuaikan diri dengan baik saat diakses melalui perangkat dengan resolusi layar berbeda, seperti laptop maupun monitor desktop standar.
+6.	Pemeliharaan (Maintainability)
+a.	Struktur Kode Standar: Kode program disusun mengikuti pola arsitektur MVC (Model-View-Controller) yang terstruktur, memudahkan pengembang untuk memahami dan memelihara sistem di masa depan.
+b.	Modularitas: Fitur-fitur sistem dikembangkan secara modular, sehingga perbaikan atau pengembangan pada satu fitur (misal: Laporan) dapat dilakukan tanpa mengganggu fitur lainnya (misal: POS).
+c.	Kemudahan Deployment: Sistem dirancang agar mudah diinstal ulang atau dipindahkan ke lingkungan server yang berbeda jika diperlukan.
+4.2	Perancangan Sistem
+Proses perancangan sistem mengimplementasikan metodologi Unified Modeling Language (UML) yang mencakup perancangan Use Case Diagram, Activity Diagram, Sequence Diagram dan Class Diagram. Pada tahapan ini juga disertakan perancangan struktur basis data serta desain antarmuka sistem.
+4.2.1	Perancangan UML 
+ .	Use Case Diagram
+Use Case Diagram merupakan representasi visual yang digunakan untuk mendeskripsikan interaksi antara aktor dengan sistem. Pada sistem ini terdapat satu aktor atau pengguna sistem yaitu admin. Use Case Diagram dirancang untuk memberikan gambaran komprehensif mengenai fungsi-fungsi utama yang dapat dijalankan oleh pengguna dalam sistem informasi.
+Aktor dalam diagram ini merepresentasikan Admin yang bertanggung jawab mengelola sistem, seperti mengatur inventaris barang, memproses transaksi penjualan, dan mengelola data transaksi. Use Case Diagram pada Sistem Informasi Bengkel Fino Motor dapat divisualisasikan pada Gambar 4.1 sebagai berikut:
+ 
+Gambar 4. 1 Use Case Diagram Sistem Informasi Bengkel Fino Motor
+Use Case Diagram adalah salah satu jenis diagram dalam analisis sistem yang menggambarkan bagaimana pengguna (admin) berinteraksi dengan sistem yang sedang dikembangkan. Diagram ini menyajikan fungsionalitas sistem dalam bentuk skenario atau use case yang menjelaskan bagaimana admin berinteraksi dengan sistem untuk mencapai tujuan operasional tertentu.
+Pada sistem informasi yang dikembangkan untuk Bengkel Fino Motor, terdapat satu aktor utama, yaitu Admin. Admin merupakan pengguna yang bertanggung jawab untuk mengelola data transaksi, barang, inventaris, dan seluruh informasi yang terintegrasi dalam sistem. Admin memiliki hak akses mutlak untuk mengelola seluruh fitur yang tersedia dalam sistem ini, mulai dari autentikasi (Login), memasukkan data barang, melakukan restocking, memproses transaksi penjualan (Point of Sales), mengakses laporan, hingga mengakhiri sesi (Logout).
+ .	Activity Diagram
+Activity Diagram merupakan representasi aliran aktivitas atau workflow yang diimplementasikan pada sistem yang dijalankan. Activity Diagram dari sistem yang dikembangkan adalah sebagai berikut:
+a.	Activity Diagram Login
+Activity Diagram Login menggambarkan sekuens aktivitas admin dan sistem dalam proses autentikasi. Diagram ini dapat dilihat pada Gambar 4.2 sebagai berikut:
+ 
+Gambar 4. 2 Activity Diagram Proses Login
+Pada activity diagram proses login, admin mengakses halaman dashboard login sistem kemudian melakukan proses input kredensial berupa username dan password. Selanjutnya, sistem akan melakukan verifikasi terhadap kredensial tersebut. Apabila kredensial valid, sistem akan melakukan regenerasi session ID untuk meningkatkan keamanan, melakukan pengecekan level akses, dan menampilkan dashboard utama sistem. Namun, apabila data tidak valid, sistem akan mengirimkan respons kegagalan dan menampilkan pesan error pada halaman login, sehingga admin harus melakukan input ulang kredensial. Activity Diagram ini mengilustrasikan alur keamanan awal sebelum admin dapat mengakses fitur-fitur pengelolaan data bengkel.
+b.	Activity Diagram Dashboard
+Activity Diagram Dashboard menggambarkan alur sistem dalam menyajikan informasi ringkasan kepada Admin setelah berhasil melakukan autentikasi. Diagram ini dapat divisualisasikan pada Gambar 4.3 sebagai berikut:
+ 
+Gambar 4. 3 Activity Diagram Dashboard
+Pada activity diagram dashboard, proses diawali ketika Admin membuka halaman dashboard. Sistem kemudian secara otomatis melakukan serangkaian proses kalkulasi data secara paralel, yaitu menghitung total penjualan harian, mengidentifikasi stok kritis, serta mengambil riwayat transaksi terbaru. Setelah data berhasil dikumpulkan, sistem menampilkannya dalam bentuk kartu informasi (Key Performance Indicator Cards) dan tabel aktivitas. Dari tampilan ini, Admin memiliki opsi untuk melakukan navigasi cepat: mengakses tombol "Restock" yang akan mengarahkan ke halaman barang masuk, melihat laporan komprehensif, atau melihat detail transaksi tertentu melalui modal popup tanpa harus berpindah halaman. Alur ini dirancang untuk memberikan efisiensi dalam pemantauan operasional bengkel dalam satu tampilan layar.
+c.	Activity Diagram Manajemen Barang (Tambah & Restock)
+Activity Diagram Manajemen Barang mendeskripsikan dua proses utama dalam pengelolaan inventaris, yaitu menambahkan item barang baru dan melakukan penambahan stok (restock) untuk barang yang telah terdaftar. Diagram ini dapat dilihat pada Gambar 4.4 sebagai berikut:
+ 
+Gambar 4. 4 Activity Diagram Manajemen Barang
+Pada activity diagram tersebut, sistem memfasilitasi dua skenario berbeda. Pertama, untuk penambahan barang baru, Admin mengisi formulir data master barang dimana stok awal dikunci (bernilai 0) oleh sistem untuk menjaga konsistensi data. Kedua, untuk proses restock, Admin menggunakan fitur "Barang Masuk" yang beroperasi seperti mekanisme keranjang belanja; Admin dapat menambahkan beberapa barang sekaligus, menentukan kuantitasnya, kemudian menyimpannya dalam satu transaksi pembelian. Sistem secara otomatis mengimplementasikan Database Transaction untuk memastikan integritas data: menyimpan riwayat transaksi pembelian dan memicu trigger otomatis untuk memperbarui jumlah stok di tabel barang utama. Apabila proses berhasil, Admin akan menerima notifikasi sukses dan stok yang telah bertambah pada daftar barang.
+d.	Activity Diagram Manajemen Kategori
+Activity Diagram Manajemen Kategori menjelaskan alur proses pengelolaan data kategori barang oleh Admin, mulai dari melihat daftar kategori, menambahkan kategori baru, melakukan editing, hingga menghapus kategori. Diagram ini dapat dilihat pada Gambar 4.5 sebagai berikut:
+ 
+Gambar 4. 5 Activity Diagram Manajemen Kategori
+Pada activity diagram manajemen kategori, Admin memiliki fleksibilitas penuh dalam mengelola pengelompokan barang. Alur dimulai ketika Admin mengakses menu kategori, dimana sistem menampilkan daftar kategori yang telah terdaftar beserta jumlah item yang terasosiasi. Dari tampilan ini, Admin dapat melakukan empat aksi utama: menambah kategori baru dengan mengisi formulir nama dan deskripsi, melakukan editing terhadap informasi kategori yang telah ada, menghapus kategori yang tidak lagi relevan setelah melakukan konfirmasi pada browser alert, atau melihat daftar barang spesifik yang terasosiasi dengan kategori tertentu. Setiap perubahan data (Create, Update, Delete) akan diproses oleh sistem melalui validasi dan eksekusi query database, kemudian sistem akan melakukan redirect ke halaman daftar kategori dengan menampilkan notifikasi keberhasilan operasi.
+e.	Activity Diagram Transaksi Penjualan (POS)
+Activity Diagram Transaksi Penjualan menggambarkan alur utama dalam sistem Point of Sales (POS), dimana transaksi penjualan barang maupun jasa dilaksanakan. Diagram ini dapat divisualisasikan pada Gambar 4.6 sebagai berikut:
+ 
+Gambar 4. 6 Activity Diagram Transaksi Penjualan (POS)
+Pada activity diagram di atas, proses transaksi dimulai ketika pengguna (Karyawan atau Admin) membuka menu POS. Sistem menampilkan antarmuka kasir yang interaktif. Pengguna kemudian mencari barang, dan sistem akan melakukan pengecekan stok secara real-time sebelum menambahkan barang ke dalam keranjang belanja sementara (session cart). Setelah semua barang dimasukkan, pengguna menyelesaikan transaksi, yang memicu sistem untuk menghitung total belanja dan menjalankan transaksi basis data (Database Transaction) yang bersifat ACID (Atomicity, Consistency, Isolation, Durability). Hal ini menjamin bahwa stok hanya akan berkurang jika transaksi penjualan benar-benar berhasil disimpan. Jika terjadi kesalahan di tengah proses, sistem akan melakukan rollback untuk mencegah ketidakkonsistenan data. Proses diakhiri dengan pencetakan nota sebagai bukti pembayaran yang sah.
+f.	Activity Diagram Laporan
+Activity Diagram Laporan menjelaskan mekanisme Admin dalam mengakses data historis dan melakukan analisis performa bengkel melalui fitur pelaporan yang dapat difilter dan diekspor. Diagram ini dapat dilihat pada Gambar 4.7 sebagai berikut:
+ 
+Gambar 4. 7 Activity Diagram Laporan
+Pada activity diagram laporan, Admin dapat mengakses informasi strategis mengenai kinerja operasional bengkel. Proses dimulai dengan pemilihan jenis laporan yang diinginkan, baik laporan penjualan untuk memantau omzet, maupun laporan stok untuk keperluan audit inventaris. Fitur kunci dalam proses ini adalah Filter Tanggal, yang memungkinkan Admin untuk mempersempit data sesuai periode yang dibutuhkan (harian, mingguan, atau bulanan). Setelah data ditampilkan oleh sistem, Admin memiliki opsi untuk melakukan ekspor data ke dalam format Excel atau PDF. Fitur ini sangat esensial untuk kebutuhan pembukuan eksternal atau arsip fisik, memastikan pemilik bengkel memiliki kendali penuh atas data historis usahanya.
+g.	Activity Diagram Logout
+Activity Diagram Logout menggambarkan aktivitas Admin atau pengguna dalam mengakhiri sesi akses ke dalam sistem. Diagram ini dapat divisualisasikan pada Gambar 4.8 sebagai berikut:
+ 
+Gambar 4. 8 Activity Diagram Logout
+Pada activity diagram tersebut, proses diinisiasi ketika pengguna memilih opsi Logout dari menu navigasi. Sistem kemudian menerima request tersebut dengan metode POST untuk keamanan, kemudian secara otomatis menghapus sesi pengguna (invalidate session) di server dan melakukan regenerasi token keamanan (CSRF) untuk mencegah penyalahgunaan sesi lama. Setelah proses pembersihan sesi selesai, sistem melakukan redirect pengguna kembali ke halaman Login, memastikan bahwa akses ke fitur sistem telah tertutup sepenuhnya hingga pengguna melakukan autentikasi ulang.
+ .	Sequence Diagram
+Sequence Diagram merupakan representasi visual yang menggambarkan interaksi antar objek di dalam dan di sekitar sistem (termasuk pengguna, display, dan sebagainya) berupa message yang digambarkan terhadap waktu. Diagram ini digunakan untuk menjelaskan bagaimana objek-objek tersebut berinteraksi dalam urutan waktu tertentu sesuai dengan Use Case yang telah didefinisikan sebelumnya.
+Berikut adalah perancangan Sequence Diagram untuk Sistem Informasi Bengkel Fino Motor :
+a.	Sequence Diagram Login
+Diagram ini menjelaskan sekuens proses teknis validasi ketika Admin melakukan autentikasi ke dalam sistem.
+ 
+Gambar 4. 9 Sequence Diagram Login
+Berdasarkan Gambar 4.9, alur proses login adalah sebagai berikut:
+•	Admin memasukkan username dan password pada Halaman Login (View).
+•	Data tersebut dikirimkan ke AuthController (Controller) untuk diproses.
+•	Controller meminta User Model untuk melakukan verifikasi ketersediaan pengguna di database.
+•	Database melakukan pencarian (query) data pengguna berdasarkan email yang dimasukkan.
+•	Apabila data ditemukan, database mengembalikan data pengguna ke Model, yang kemudian meneruskannya ke Controller.
+•	Controller melakukan validasi kecocokan password.
+-	Jika Valid: Controller melakukan redirect Admin ke halaman Dashboard dan sistem menampilkan halaman utama.
+-	Jika Gagal: Controller mengembalikan pesan error ke halaman login untuk ditampilkan kepada Admin.
+b.	Sequence Diagram Manajemen Barang (Tambah Barang)
+Diagram ini menggambarkan interaksi objek ketika Admin menambahkan data suku cadang baru ke dalam sistem.
+ 
+Gambar 4. 10 Sequence Diagram Manajemen Barang (Tambah Barang)
+Berdasarkan Gambar 4.10, alur penambahan barang adalah sebagai berikut:
+●	Admin mengklik tombol "Tambah Barang" pada Halaman Barang.
+●	Sistem menampilkan formulir input data.
+●	Admin mengisi data (Nama Barang, Harga Beli, Harga Jual, Kategori) dan menekan tombol "Simpan".
+●	BarangController menerima data tersebut dan melakukan validasi input.
+●	Setelah valid, Controller memanggil Barang Model untuk membuat objek barang baru.
+●	Data disimpan ke dalam Database dengan status stok awal otomatis diset ke 0.
+●	Setelah penyimpanan berhasil, sistem melakukan redirect kembali ke daftar barang dengan menampilkan pesan sukses ("Data Berhasil Disimpan").
+c.	Sequence Diagram Transaksi Penjualan (POS)
+Diagram ini menjabarkan alur teknis kompleks ketika transaksi penjualan terjadi, termasuk proses pengurangan stok secara otomatis (looping).
+ 
+Gambar 4. 11 Sequence Diagram Transaksi Penjualan (POS)
+Berdasarkan Gambar 4.11, alur transaksi penjualan adalah sebagai berikut:
+●	Admin memilih item barang pada Halaman POS dan menekan tombol bayar/selesaikan transaksi.
+●	Transaks iController menerima data daftar belanjaan (cart items) dan total harga.
+●	Controller pertama-tama membuat data induk transaksi (nomor invoice, tanggal, total) melalui Transaksi Model dan menyimpannya ke Database.
+●	Sistem melakukan iterasi (loop) untuk setiap item barang yang dibeli:
+-	Menyimpan rincian barang ke tabel detail_transaksi.
+-	Memanggil Barang Model untuk mengurangi jumlah stok barang di database sesuai kuantitas pembelian (UPDATE barang SET stok = stok - qty).
+●	Setelah seluruh proses database selesai, sistem melakukan redirect Admin ke halaman Nota untuk proses pencetakan.
+ .	Class Diagram
+Class Diagram menggambarkan struktur sistem dari perspektif pendefinisian kelas-kelas yang akan diimplementasikan untuk membangun sistem. Diagram ini menunjukkan kelas-kelas yang ada pada sistem, atribut yang dimilikinya, serta relasi (relationship) antarkelas tersebut yang merepresentasikan struktur tabel dalam database.
+ 
+Gambar 4. 12 Class Diagram Sistem Informasi Bengkel Fino Motor
+Berdasarkan Gambar 4.12, sistem terdiri dari lima class (entitas) utama dengan rincian sebagai berikut:
+1.	User: Merepresentasikan pengguna sistem (Admin). 
+a.	Attribute: uuid, first_name, last_name, email, role, is_active.
+b.	Operasi: login() untuk autentikasi, logout() untuk mengakhiri sesi, dan isAdmin() untuk pengecekan hak akses.
+2.	Kategori: Digunakan untuk mengelompokkan barang. 
+a.	Atribut: nama_kategori, catatan, is_active.
+b.	Operasi: store() untuk menyimpan kategori baru dan listBarang() untuk melihat barang dalam kategori tersebut.
+3.	Barang: Menyimpan data suku cadang dan jasa. 
+a.	Atribut: kode_barang, nama_barang, jumlah_stok, stok_minimum, harga_beli, harga_jual.
+b.	Operasi: cekStok() untuk validasi ketersediaan, dan isLowStock() untuk mengecek apakah stok berada di bawah batas minimum (notifikasi).
+4.	Transaksi: Mencatat header penjualan (faktur). 
+a.	Atribut: kode_transaksi, tanggal_transaksi, tipe_transaksi (masuk/keluar), total_nilai.
+b.	Operasi: buatTransaksi() untuk menyimpan data ke database, dan hitungTotal() untuk mengkalkulasi total belanja.
+5.	DetailTransaksi: Merupakan entitas penghubung yang mencatat rincian barang yang terdapat dalam satu transaksi, beserta kuantitas (qty) dan subtotal per itemnya.
+a.	Atribut: jumlah (qty), harga_satuan, subtotal.
+b.	Operasi: simpanDetail() untuk menyimpan baris item belanja.
+6.	RiwayatStok: Mencatat log perubahan stok untuk audit.
+a.	Atribut: tipe (masuk/keluar), jumlah, keterangan.
+b.	Operasi: catatLog() untuk merekam aktivitas perubahan stok.
+4.2.2	Perancangan Basis Data
+Perancangan basis data merupakan tahapan krusial dalam pengembangan sistem yang bertujuan untuk memodelkan struktur penyimpanan data agar terorganisir, efisien, dan konsisten. Tahap ini terdiri dari dua bagian utama, yaitu pembuatan Entity Relationship Diagram (ERD) untuk memvisualisasikan relasi antar entitas, dan spesifikasi tabel untuk mendefinisikan struktur fisik penyimpanan data.
+1.	Entity Relationship Diagram (ERD)
+Entity Relationship Diagram (ERD) digunakan untuk menggambarkan struktur logis dari basis data Sistem Informasi Bengkel Fino Motor. ERD menjelaskan entitas-entitas data yang terlibat serta bagaimana relasi atau kardinalitas antar entitas tersebut.
+Berikut adalah rancangan ERD untuk Sistem Informasi Bengkel Fino Motor:
+ 
+Gambar 4. 13 Entity Relationship Diagram (ERD)
+Analisis Kardinalitas:
+a.	Users ke Transaksi (1:N): Satu (One) pengguna (Kasir/Admin) dapat mencatat banyak (Many) transaksi, namun satu transaksi dicatat oleh satu pengguna tertentu.
+b.	Kategori ke Barang (1:N): Satu (One) kategori dapat menampung banyak (Many) jenis barang.
+c.	Transaksi ke Detail Transaksi (1:N): Satu (One) nomor faktur transaksi terdiri dari banyak (Many) item barang yang dibeli/dijual.
+d.	Barang ke Detail Transaksi (1:N): Satu (One) data barang master dapat muncul di banyak (Many) riwayat detail transaksi.
+2.	Spesifikasi Tabel Basis Data
+Spesifikasi tabel menjelaskan rincian teknis dari setiap tabel fisik yang telah dibuat. Penjelasan ini mencakup nama kolom, tipe data, panjang karakter, serta fungsinya sesuai dengan implementasi di database.
+a.	Tabel Users
+Tabel ini digunakan untuk manajemen pengguna aplikasi dengan kontrol akses berbasis peran (Role-Based Access Control).
+●	Nama Tabel: users
+●	Primary Key: id
+Tabel 4. 1 Tabel User
+No	Nama Kolom	Tipe Data	Panjang	Keterangan
+1	id	INT	11	Primary Key, Auto Increment. ID unik pengguna.
+2	uuid	CHAR	36	Universally Unique Identifier untuk keamanan referensi data.
+3	first_name	VARCHAR	45	Nama depan pengguna.
+4	last_name	VARCHAR	45	Nama belakang pengguna.
+5	email	VARCHAR	100	Alamat email unik untuk login.
+6	password	VARCHAR	255	Password yang dienkripsi (Hash).
+7	gender	ENUM	'L','P'	Jenis kelamin pengguna ('L' = Laki-laki, 'P' = Perempuan)
+8	role	ENUM	-	Hak akses: 'admin', 'karyawan', 'pemilik'.
+9	phone_number	VARCHAR	20	Nomor telepon pengguna.
+10	is_active	TINYINT	1	Status aktif akun (1 = Aktif, 0 = Non-aktif).
+
+b.	Tabel Kategori
+Tabel ini digunakan sebagai data referensi untuk mengelompokkan barang agar lebih mudah dicari dan dikelola.
+●	Nama Tabel: kategori
+●	Primary Key: id
+Tabel 4. 2 Spesifikasi Tabel Kategori
+No	Nama Kolom	Tipe Data	Panjang	Keterangan
+1	id	INT	11	Primary Key, Auto Increment.
+2	nama_kategori	VARCHAR	100	Nama kategori barang (misal: Oli, Ban).
+3	catatan	TEXT	-	Deskripsi tambahan kategori.
+4	is_active	TINYINT	1	Status aktif kategori.
+
+c.	Tabel Barang
+Tabel master yang menyimpan seluruh informasi inventaris suku cadang (sparepart).
+●	Nama Tabel: barang
+●	Primary Key: id
+●	Foreign Key: kategori_id (merujuk ke tabel kategori)
+Tabel 4. 3 Spesifikasi Tabel Barang
+No	Nama Kolom	Tipe Data	Panjang	Keterangan
+1	id	INT	11	Primary Key, Auto Increment.
+2	kode_barang	VARCHAR	50	Kode unik (SKU) barang (misal: BRG-001).
+3	nama_barang	VARCHAR	255	Nama lengkap produk/jasa.
+4	jumlah_stok	INT	11	Jumlah sisa stok saat ini.
+5	stok_minimum	INT	11	Batas stok untuk pemicu notifikasi (Alert).
+6	tipe_stok	ENUM	-	Satuan unit (pcs, box, set, botol, dll).
+7	harga_beli	DECIMAL	15,2	Harga modal per unit.
+8	harga_jual	DECIMAL	15,2	Harga jual ke pelanggan.
+9	kategori_id	INT	11	Foreign Key ke tabel kategori.
+10	users_id	INT	11	Foreign Key ke tabel users (penginput).
+
+d.	Tabel Transaksi
+Tabel ini menyimpan data rekapitulasi setiap transaksi penjualan yang terjadi.
+●	Nama Tabel: transaksi
+●	Primary Key: id
+●	Foreign Key: user_id (merujuk ke tabel users)
+Tabel 4. 4 Spesifikasi Tabel Transaksi
+No	Nama Kolom	Tipe Data	Panjang	Keterangan
+1	id	INT	11	Primary Key, Auto Increment.
+2	kode_transaksi	VARCHAR	50	Nomor faktur unik (misal: TRX-2025...).
+3	tanggal_transaksi	DATETIME	-	Waktu terjadinya transaksi.
+4	tipe_transaksi	ENUM	-	Jenis transaksi: 'masuk' atau 'keluar'.
+5	keterangan	TEXT	-	Catatan tambahan transaksi.
+6	total_nilai	DECIMAL	15,2	Total nominal rupiah transaksi.
+7	users_id	INT	11	Foreign Key. ID kasir/admin yang bertugas.
+8	is_deleted	TINYINT	1	Penanda penghapusan lunak (soft delete).
+
+e.	Tabel Detail Transaksi
+Tabel ini menyimpan rincian item apa saja yang dibeli dalam satu nomor invoice. Tabel ini menghubungkan tabel transaksi dan tabel barang.
+●	Nama Tabel: detail_transaksi
+●	Primary Key: id
+●	Foreign Key: transaksi_id (ke tabel transaksi), barang_id (ke tabel barang)
+Tabel 4. 5 Spesifikasi Tabel Detail Transaksi
+No	Nama Kolom	Tipe Data	Panjang	Keterangan
+1	id	INT	11	Primary Key, Auto Increment.
+2	transaksi_id	INT	11	Foreign Key ke tabel transaksi utama.
+3	barang_id	INT	11	Foreign Key ke tabel barang.
+4	nama_barang	VARCHAR	255	Snapshot nama barang saat transaksi terjadi (untuk histori jika nama master berubah).
+5	jumlah	INT	11	Kuantitas barang yang ditransaksikan.
+6	harga_satuan	DECIMAL	15,2	Harga per unit saat transaksi terjadi.
+7	subtotal	DECIMAL	15,2	Hasil perhitungan (jumlah × harga_satuan).
+
+f.	Tabel Riwayat Stok
+Tabel log audit untuk memantau pergerakan stok barang secara rinci.
+●	Nama Tabel: riwayat_stok
+●	Primary Key: id
+●	Foreign Key: barang_id
+Tabel 4. 6 Spesifikasi Tabel Riwayat Stok
+No	Nama Kolom	Tipe Data	Panjang	Keterangan
+1	id	INT	11	Primary Key, Auto Increment.
+2	barang_id	INT	11	Foreign Key ke tabel barang.
+3	nama_barang	VARCHAR	255	Nama barang yang stoknya berubah.
+4	jumlah	INT	11	Jumlah perubahan stok.
+5	tipe	ENUM	-	Jenis perubahan: 'masuk' atau 'keluar'.
+6	keterangan	TEXT	-	Informasi penyebab perubahan stok.
+7	tanggal	DATETIME	-	Waktu pencatatan log.
+
+4.3	Hasil Implementasi Antarmuka
+4.3.1	Halaman Login
+Halaman Login merupakan gerbang keamanan utama sebelum pengguna dapat mengakses sistem.
+ 
+Gambar 4. 14 Tampilan Halaman Login
+Sebagaimana terlihat pada Gambar 4.14, halaman ini memiliki desain yang minimalis dengan fokus pada formulir autentikasi. Admin wajib memasukkan username dan password yang terdaftar. Sistem keamanan telah diimplementasikan; apabila kredensial yang dimasukkan tidak valid, sistem akan menolak akses dan menampilkan pesan peringatan. Mekanisme ini memastikan bahwa data bengkel hanya dapat diakses oleh pihak yang memiliki otorisasi, yaitu pemilik atau admin yang ditunjuk.
+4.3.2	Halaman Dashboard 
+Setelah berhasil melakukan autentikasi, Admin akan diarahkan ke halaman Dashboard yang berfungsi sebagai pusat informasi (Command Center).
+ 
+Gambar 4. 15 Tampilan Halaman Dashboard
+Gambar 4.15 menunjukkan tampilan Dashboard yang menyajikan ringkasan kinerja bengkel secara real-time. Terdapat beberapa kartu informasi utama (Key Performance Indicators) yang menampilkan total penjualan hari ini, jumlah barang dengan stok kritis, dan total produk yang terdaftar. Selain itu, terdapat visualisasi grafik yang memudahkan pemilik bengkel memantau tren pendapatan bulanan tanpa harus membuka laporan terperinci. Halaman ini sangat mendukung pengambilan keputusan secara cepat dan tepat.
+4.3.3	Halaman Manajemen Kategori 
+Halaman ini digunakan untuk mengelompokkan jenis barang agar inventaris lebih terstruktur.
+ 
+Gambar 4. 16 Tampilan Halaman Manajemen Kategori
+Pada Gambar 4.16, Admin dapat melihat daftar kategori barang yang telah terdaftar (misalnya: Oli, Ban, Busi). Fitur ini memungkinkan Admin untuk menambah kategori baru, melakukan modifikasi terhadap nama kategori, atau menghapus kategori yang tidak lagi relevan. Pengelompokan ini esensial agar proses pencarian barang di fitur Kasir lebih efisien berdasarkan klasifikasinya.
+4.3.4	Halaman Manajemen Data Barang 
+Halaman ini merupakan modul utama untuk melihat dan mengelola seluruh inventaris suku cadang yang tersedia di bengkel.
+ 
+Gambar 4. 17 Tampilan Halaman Manajemen Barang
+Gambar 4.17 memperlihatkan tabel daftar barang yang memuat informasi komprehensif seperti Kode Barang, Nama Barang, Kategori, Harga Beli, Harga Jual, dan Sisa Stok. Pada halaman ini, Admin dapat memantau ketersediaan barang secara rinci. Terdapat juga fitur pencarian (search) dan paginasi untuk memudahkan navigasi apabila jumlah barang mencapai ratusan item.
+4.3.5	Halaman Tambah Barang Baru 
+Ketika bengkel memiliki produk jenis baru yang belum pernah terdaftar sebelumnya, Admin menggunakan halaman ini untuk mendaftarkannya.
+ 
+Gambar 4. 18 Tampilan Formulir Tambah Barang
+Sesuai Gambar 4.18, halaman ini berisi formulir untuk memasukkan data master barang. Admin menginputkan nama barang, memilih kategori, serta menentukan harga beli dan harga jual. Perlu dicatat bahwa pada tahap ini, stok awal biasanya dikonfigurasi ke nilai 0, namun penambahan stok selanjutnya direkomendasikan melalui fitur Restock untuk menjaga riwayat barang masuk.
+4.3.6	Halaman Restock Barang (Barang Masuk) 
+Fitur ini dirancang khusus untuk mengatasi permasalahan pencatatan stok masuk yang seringkali tidak terdokumentasi dengan baik.
+ 
+Gambar 4. 19 Tampilan Halaman Restock Barang
+Gambar 4.19 menunjukkan antarmuka untuk melakukan penambahan stok. Berbeda dengan fungsi "Edit Barang" konvensional, fitur ini mencatat riwayat penambahan. Admin memilih barang yang akan ditambah stoknya, kemudian memasukkan jumlah unit yang baru diperoleh dari supplier. Sistem secara otomatis akan melakukan agregasi stok baru dengan stok existing di database, memastikan data inventaris selalu akurat.
+4.3.7	Halaman Transaksi Kasir (POS) 
+Ini adalah halaman operasional utama yang digunakan sehari-hari untuk melayani pelanggan.
+ 
+Gambar 4. 20 Tampilan Halaman Kasir (Point of Sales)
+Sebagaimana terlihat pada Gambar 4.20, antarmuka Kasir dirancang untuk optimalisasi kecepatan transaksi.
+●	Bagian Kiri: Menampilkan katalog barang yang dapat dicari secara cepat.
+●	Bagian Kanan: Keranjang belanja (Cart) yang menampilkan item yang dipilih pelanggan.
+Sistem secara otomatis menghitung total harga (Subtotal) dan mengkalkulasi kembalian ketika Admin memasukkan jumlah uang yang dibayarkan. Setelah transaksi diproses, stok barang akan berkurang secara otomatis dan nota siap dicetak.
+4.3.8	Halaman Laporan 
+Halaman ini menggantikan pembukuan manual yang sebelumnya menjadi kendala bagi pemilik bengkel.
+ 
+Gambar 4. 21 Tampilan Halaman Laporan
+Gambar 4.21 menampilkan fitur pelaporan yang fleksibel. Admin dapat melakukan filtering laporan berdasarkan rentang tanggal tertentu (misalnya: laporan harian, mingguan, atau bulanan). Tabel laporan menyajikan rincian setiap transaksi yang terjadi, termasuk identitas kasir dan total omzet yang diperoleh. Fitur ini memberikan transparansi penuh terhadap arus kas bengkel.
+4.3.6	Fitur Export Excel
+Untuk kebutuhan arsip atau analisis lebih lanjut di luar sistem, aplikasi menyediakan fitur ekspor data.
+ 
+Gambar 4. 22 Tampilan Hasil Export Excel
+Gambar 4.22 menunjukkan hasil unduhan laporan dalam format Microsoft Excel (.xlsx). Fitur ini sangat esensial bagi pemilik bengkel untuk melakukan pembukuan bulanan, audit stok opname, atau menyimpan cadangan data (backup) transaksi secara lokal. File Excel yang dihasilkan tersusun sistematis sesuai kolom-kolom yang dibutuhkan untuk keperluan akuntansi sederhana.
+4.4	Pengujian Sistem
+Pengujian sistem dilaksanakan untuk memastikan aplikasi yang dikembangkan bebas dari kesalahan (error) dan beroperasi sesuai dengan kebutuhan fungsional yang telah didefinisikan sebelumnya. Metode yang diimplementasikan dalam kerja praktik ini adalah Black Box Testing.
+Metode Black Box Testing berfokus pada pengujian fungsionalitas antarmuka aplikasi tanpa menganalisis struktur kode internalnya. Pengujian dilakukan dengan memberikan berbagai input pada sistem dan mengobservasi output yang dihasilkan, apakah telah sesuai dengan logika bisnis yang diharapkan.
+Berikut adalah hasil pengujian Sistem Informasi Bengkel Fino Motor yang di kategorisasi berdasarkan modul halaman:
+4.4.6	Pengujian Halaman Login 
+Pengujian ini bertujuan memverifikasi keamanan akses masuk ke dalam sistem.
+Tabel 4. 7 Pengujian Halaman Login
+No	Skenario Pengujian	Hasil yang Diharapkan	Hasil Pengujian	Kesimpulan
+1	Mengosongkan username dan password, lalu klik Login	Sistem menolak akses dan menampilkan pesan "Field wajib diisi".	Sesuai harapan	Valid
+2	Memasukkan username atau password yang salah	Sistem menolak akses dan menampilkan pesan "Kredensial tidak cocok".	Sesuai harapan	Valid
+3	Memasukkan username dan password yang benar	Sistem menerima akses dan mengarahkan pengguna ke halaman Dashboard.	Sesuai harapan	Valid
+
+4.4.2	Pengujian Halaman Dashboard & Notifikasi
+Pengujian ini memastikan informasi ringkasan dan notifikasi stok kritis ditampilkan dengan akurat.
+Tabel 4. 8 Pengujian Dashboard
+No	Skenario Pengujian	Hasil yang Diharapkan	Hasil Pengujian	Kesimpulan
+1	Membuka halaman Dashboard	Menampilkan kartu total penjualan harian, jumlah barang, dan grafik pendapatan.	Sesuai harapan	Valid
+2	Sistem mendeteksi stok barang di bawah batas minimum (< 5)	Menampilkan daftar barang tersebut pada tabel "Stok Kritis".	Sesuai harapan	Valid
+3	Mengklik menu navigasi Sidebar	Halaman berpindah sesuai menu yang diklik (Barang, POS, Laporan).	Sesuai harapan	Valid
+
+4.4.3	Pengujian Manajemen Data Master (Kategori & Barang) 
+Pengujian ini memverifikasi fungsi Create, Read, Update, Delete (CRUD) pada data induk.
+Tabel 4. 9 Pengujian Manajemen Barang & Kategori
+No	Skenario Pengujian	Hasil yang Diharapkan	Hasil Pengujian	Kesimpulan
+1	Menambah Kategori Baru	Data kategori tersimpan dan muncul di tabel daftar kategori	Sesuai harapan	Valid
+2	Menambah Barang Baru dengan data lengkap	Data barang tersimpan ke database dengan stok awal 0.	Sesuai harapan	Valid
+3	Mengedit data harga jual barang	Perubahan harga tersimpan dan langsung terupdate di sistem.	Sesuai harapan	Valid
+
+4.4.4	Pengujian Fitur Restock (Barang Masuk) 
+Pengujian ini sangat krusial untuk memastikan stok bertambah dengan akurat tanpa merusak integritas data lain.
+Tabel 4. 10 Pengujian Restock Barang
+No	Skenario Pengujian	Hasil yang Diharapkan	Hasil Pengujian	Kesimpulan
+1	Memilih barang dan memasukkan jumlah penambahan stok	Sistem menyimpan riwayat barang masuk.	Sesuai harapan	Valid
+2	Menyimpan data Restock	Jumlah stok di tabel "Barang" bertambah otomatis (Stok Lama + Input Baru).	Sesuai harapan	Valid
+
+4.4.5	Pengujian Transaksi Kasir (POS) 
+Pengujian fungsionalitas utama untuk melayani pelanggan.
+Tabel 4. 11 Pengujian Transaksi POS
+No	Skenario Pengujian	Hasil yang Diharapkan	Hasil Pengujian	Kesimpulan
+1	Menambahkan barang ke keranjang belanja	Barang masuk ke list keranjang dengan harga yang benar.	Sesuai harapan	Valid
+2	Mengubah jumlah (Qty) barang di keranjang	Subtotal harga berubah mengikuti jumlah barang.	Sesuai harapan	Valid
+3	Memasukkan nominal bayar kurang dari total belanja	Sistem menolak pembayaran atau tombol bayar tidak aktif.	Sesuai harapan	Valid
+4	Menyelesaikan transaksi (Klik Bayar)	Transaksi berhasil, stok barang berkurang otomatis, dan nota tercetak.	Sesuai harapan	Valid
+
+4.4.6	Pengujian Laporan & Export 
+Pengujian untuk memastikan akurasi data historis dan fitur unduhan.
+Tabel 4. 12 Pengujian Laporan
+No	Skenario Pengujian	Hasil yang Diharapkan	Hasil Pengujian	Kesimpulan
+1	Melakukan filter tanggal (misal: 1 Nov - 30 Nov)	Tabel hanya menampilkan transaksi yang terjadi pada rentang tanggal tersebut.	Sesuai harapan	Valid
+2	Mengklik tombol Export Excel	Browser mengunduh file .xlsx yang berisi data laporan sesuai filter.	Sesuai harapan	Valid
+
+4.4.7	Pengujian Logout
+Pengujian fungsi keamanan sesi pengguna.
+Tabel 4. 13 Pengujian Logout
+No	Skenario Pengujian	Hasil yang Diharapkan	Hasil Pengujian	Kesimpulan
+1	Mengklik tombol Logout	Sesi pengguna dihapus dan sistem mengarahkan kembali ke halaman Login.	Sesuai harapan	Valid
+2	Menekan tombol Back pada browser setelah Logout	Halaman Dashboard tidak bisa diakses kembali tanpa login ulang.	Sesuai harapan	Valid
+
+4.5	Analisis dan Pembahasan Hasil Pengujian
+Berdasarkan rangkaian pengujian Black Box yang telah dilaksanakan sebagaimana tercantum pada Tabel 4.6 hingga Tabel 4.12, dapat ditarik analisis bahwa seluruh komponen fungsional Sistem Informasi Bengkel Fino Motor telah beroperasi dengan status Valid dan sesuai dengan rancangan awal.
+Hasil pengujian ini menunjukkan keberhasilan sistem dalam menjawab permasalahan operasional bengkel yang telah diidentifikasi pada tahap analisis (Bab 3), yaitu:
+1.	Akurasi Transaksi: Fitur Point of Sales (POS) terbukti mampu melakukan perhitungan total belanja dan kembalian secara otomatis, sehingga risiko kesalahan perhitungan (human error) yang sering terjadi pada pencatatan nota manual dapat dieliminasi sepenuhnya.
+2.	Manajemen Inventaris: Mekanisme pembaruan stok otomatis melalui fitur Restock dan pengurangan stok saat transaksi memastikan sinkronisasi data persediaan barang antara sistem dan kondisi fisik gudang. Notifikasi stok kritis pada Dashboard juga berhasil memberikan peringatan dini kepada pemilik untuk melakukan pengadaan barang.
+3.	Efisiensi Pelaporan: Fitur laporan yang dilengkapi dengan filter tanggal dan ekspor Excel memfasilitasi pemilik dalam melakukan rekapitulasi omzet dan evaluasi penjualan tanpa harus melakukan rekapitulasi nota secara manual satu per satu.
+Secara keseluruhan, sistem ini dinilai stabil dan siap untuk diimplementasikan (deployed) pada lingkungan operasional Bengkel Fino Motor yang sesungguhnya guna menggantikan sistem pencatatan manual yang selama ini digunakan.
+
+
+BAB 5	
+PENUTUP
+5. 1 	Kesimpulan
+Berdasarkan hasil pelaksanaan kerja praktik di Bengkel Fino Motor, dapat disimpulkan bahwa Rancang Bangun Sistem Informasi Manajemen Penjualan dan Stok Barang dari kegiatan ini telah berhasil dicapai dengan baik. Proyek ini tidak hanya memberikan solusi teknis berupa pengembangan sistem informasi berbasis web, tetapi juga menghadirkan manfaat strategis bagi bengkel dalam upaya meningkatkan efisiensi operasional dan akurasi pengelolaan data inventaris serta transaksi penjualan.
+Membangun sistem manajemen penjualan dan stok yang informatif dan akurat, telah terealisasi melalui tahapan analisis kebutuhan, perancangan sistem menggunakan UML (Use Case Diagram, Activity Diagram, Sequence Diagram, dan Class Diagram), pengembangan dengan framework Laravel dan database MySQL, hingga pengujian dengan metode black-box testing. Sistem yang dihasilkan mampu menjalankan fungsi krusial seperti pemantauan stok suku cadang secara real-time dengan notifikasi stok kritis, pencatatan transaksi penjualan melalui fitur Point of Sales (POS) yang otomatis mengurangi stok, pencatatan barang masuk (restock) yang terstruktur, serta pembuatan laporan penjualan yang dapat diekspor ke format Excel dengan desain antarmuka yang user-friendly, navigasi yang jelas, serta responsif.Kehadiran sistem ini tidak hanya menjadi alat 
+pencatatan administrasi, tetapi juga berfungsi sebagai solusi digital yang profesional, sehingga mampu meningkatkan kepercayaan diri pemilik bengkel dalam mengambil keputusan bisnis, memantau performa usaha secara transparan, serta meminimalisir kesalahan perhitungan (human error) yang sering terjadi pada pembukuan manual menggunakan buku besar. Dengan demikian, transformasi digital yang dilakukan melalui kerja praktik ini memberikan dampak positif yang signifikan terhadap kualitas layanan dan efisiensi operasional Bengkel Fino Motor.
+
+5. 2 	Saran
+Berdasarkan hasil kerja praktik ini, beberapa saran dapat diajukan untuk pengembangan lebih lanjut :
+1.	Pengembangan Fitur Notifikasi Otomatis
+Untuk meningkatkan kewaspadaan terhadap ketersediaan stok barang, disarankan untuk menambahkan fitur notifikasi otomatis melalui WhatsApp atau Email yang memberi peringatan kepada admin atau pemilik bengkel ketika stok suku cadang tertentu sudah mencapai batas minimum. Hal ini akan membantu mencegah terjadinya kekosongan stok yang dapat menghambat pelayanan kepada pelanggan.
+2.	Optimalisasi Manajemen Pengguna (Multi-User)
+Penting untuk mengembangkan manajemen hak akses yang lebih rinci dengan sistem role-based access control, misalnya memisahkan akun untuk "Pemilik", "Admin", dan "Kasir". Hal ini akan menjaga keamanan data sensitif (seperti laporan laba rugi dan riwayat transaksi lengkap) agar hanya dapat diakses oleh pihak yang berwenang, sementara kasir hanya memiliki akses ke fitur Point of Sales untuk melayani transaksi pelanggan.
+3.	Integrasi Pembayaran Digital
+Mempertimbangkan untuk mengintegrasikan sistem dengan platform pembayaran digital (seperti QRIS, E-Wallet, atau EDC virtual) untuk memperluas opsi metode pembayaran bagi pelanggan. Integrasi ini akan mempercepat proses transaksi di kasir dan mengakomodasi preferensi pelanggan yang semakin beralih ke pembayaran non-tunai.
+4.	Implementasi Modul Manajemen Servis Kendaraan
+Disarankan untuk menambahkan modul khusus yang mencatat riwayat servis pelanggan, termasuk jenis perbaikan yang dilakukan, suku cadang yang digunakan, biaya servis, dan jadwal perawatan berkala. Fitur ini akan meningkatkan layanan pelanggan melalui pendekatan yang lebih personal dan membantu bengkel dalam membangun loyalitas pelanggan jangka panjang.
+5.	Penambahan Fitur Barcode/QR Code Scanner
+Untuk mempercepat proses pencarian dan pemilihan barang pada halaman POS, disarankan untuk mengintegrasikan sistem dengan barcode scanner. Setiap suku cadang dapat diberi label barcode sehingga kasir cukup melakukan scanning tanpa harus mengetik nama barang secara manual, yang akan meningkatkan kecepatan dan akurasi transaksi.
+6.	Dashboard Analytics yang Lebih Mendalam
+Mengembangkan fitur analisis data yang lebih canggih pada dashboard, seperti grafik perbandingan penjualan antar periode, identifikasi produk best-seller dan slow-moving, analisis margin keuntungan per kategori barang, serta prediksi kebutuhan stok di masa mendatang berdasarkan pola penjualan historis. Hal ini akan sangat membantu pemilik dalam pengambilan keputusan strategis terkait pengadaan barang dan strategi pemasaran.
+Dengan implementasi saran-saran di atas, diharapkan Sistem Informasi Manajemen Penjualan dan Stok Barang pada Bengkel Fino Motor dapat terus berkembang dan memberikan manfaat yang lebih optimal dalam mendukung pertumbuhan bisnis bengkel di masa mendatang.
+
+
+
+
+DAFTAR PUSTAKA
+Aurellia, A. (2025). PEMANFAATAN UML DALAM PERANCANGAN SISTEM INFORMASI PRODUK KREATIF DAUR ULANG SAMPAH BERBASIS WEB. Jurnal Informatika Dan Teknik Elektro Terapan, 13(3S1). https://doi.org/10.23960/jitet.v13i3S1.8073
+Aqila, H., Salsabila Putri, F., & Haryono, W. (2025). Sistem Manajemen Bengkel Berbasis Web Menggunakan Metode Waterfall ( Studi Kasus: Fam Auto). Jurnal Ilmu Komputer Dan Teknologi Informasi, 3(3). https://doi.org/10.61132/neptunus.v3i3.937
+Hendri, Intan Permata, & Fachruddin. (2020). Perancangan Sistem Informasi Penjualan Dan Jasa Perbaikan Mobil Pada Bengkel Alam Jaya. Jurnal Processor, 15(1), 30–42. https://doi.org/10.33998/processor.2020.15.1.708 
+Khatimah, H., & Pondok Pesantren Miftahul Ulum Bettet Pamekasan, J. (2024). ANALISIS PENGUJIAN SISTEM INFORMASI PELANGGARAN HUKUM DI LAUT INDONESIA MENGGUNAKAN METODE BLACKBOX TESTING (Vol. 18, Number 1). https://ejurnal.teknokrat.ac.id/index.php/teknoinfo/index
+Meha, Y. F., & Ratna Wati Simbolon. (2025). Metode Waterfall dalam Perancangan Sistem Informasi Penjualan Elektronik. LOFIAN: Jurnal Teknologi Informasi Dan Komunikasi, 5(1), 29–37. https://doi.org/10.58918/1xzvxt34 
+Munyaka, J. B., & Yadavalli, V. S. S. (2022). INVENTORY MANAGEMENT CONCEPTS AND IMPLEMENTATIONS: A SYSTEMATIC REVIEW. South African Journal of Industrial Engineering, 33(2), 15–36. https://doi.org/10.7166/33-2-2527 
+Nurhayati, W., & Yanti Kemala Sari Siregar, G. (2023). IMPLEMENTASI METODE WATERFALL PADA SISTEM INFORMASI PERPUSTAKAAN ONLINE SMK NEGERI 1 SEPUTIH AGUNG. In JURNAL ILMU KOMPUTER DAN INFORMATIKA (Vol. 4, Number 2).
+Purba, M., Syidik Rizky, M., Maharani, P., Fitri Brianna, D., & Octavia, P. (n.d.). Sistem Inventarisasi Stok Barang dan Penjualan Suku Cadang Kendaraan di PT. XYZ. Jurnal Ilmu Komputer Dan Informatika), 7(1), 2745–5823. https://doi.org/10.54650
+Ramadhani, I., Nindyasari, R., & Catur Murti, A. (2025). Design and Development of a Web-Based Point of Sale System for Small-Scale Retail Management. Bit-Tech, 8(1), 181–189. https://doi.org/10.32877/bt.v8i1.2487
+Safira Armah, & Rayyan Firdaus. (2024). Konsep Dan Penerapan Sistem Informasi Manajemen. Jurnal Inovasi Manajemen, Kewirausahaan, Bisnis Dan Digital, 1(3), 50–56. https://doi.org/10.61132/jimakebidi.v1i3.192 
+Susanto, B. A., Puspitasari, D. E., Alhamri, R. Z., Informatika, M., Kediri, K., & Malang, P. N. (2023). Sistem Informasi Penjualan dan Manajemen Stok Berbasis Web Studi Kasus Silver Cell Group. JURNAL INFORMATIKA & MULTIMEDIA, 15(1).
+Yoki Firmansyah. (2018). Penerapan Metode SDLC Waterfall Dalam Pembuatan Sistem Informasi Akademik. In Jurnal Teknologi & Manajemen Informatika (Vol. 4, Number 1).
+ 
+LAMPIRAN
+Lampiran Penilaian Kerja Praktik Perusahaan
+ 
+
+Lampiran Surat Izin Magang
+ 
+
+
+Lampiran Dokumentasi  
+ 	 
+ 
+	 
+ 	
+
+
+
+
+Lampiran Transkrip Wawancara dengan Pengelola Bengkel Fino Motor
+ 
+
+
+
+ 
+
